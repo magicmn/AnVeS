@@ -15,3 +15,6 @@ hs_err_pid*
 
 # Ausgabe von mvnw spring-boot:run
 */target/*
+
+# IntelliJ Projekt-Konfiguration
+*.idea/*
