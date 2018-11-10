@@ -6,12 +6,7 @@
        <artifactId>AnVeS</artifactId>
        <version>1.0</version>
    </parent>
-   <artifactId>view</artifactId>
+   <artifactId>model</artifactId>
    <dependencies>
-       <dependency>
-			<groupId>de.anves</groupId>
-			<artifactId>model</artifactId>
-			<version>1.0</version>
-		</dependency>
    </dependencies>
 </project>
