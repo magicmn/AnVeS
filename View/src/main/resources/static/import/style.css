@@ -1,0 +1,57 @@
+:root {
+    --colorAccentDark: rgb(55, 55, 55);
+    --colorAccentWhite: rgb(255, 255, 255);
+    --colorAccentLightGrey: rgb(108, 117, 125)
+}
+
+header {
+    margin: 0 auto;
+    text-align: center;
+    margin: 30px 0px;
+    color: var(--colorAccentDark);
+}
+
+nav {
+    width: 1300px;
+    margin: 0 auto 50 auto;
+}
+
+.dark-bg {
+    background-color: var(--colorAccentDark);
+}
+
+.dark-bg .breadcrumb-item {
+    color: var(--colorAccentLightGrey);
+    margin: 0 auto;
+}
+
+.dark-bg .breadcrumb-item.active {
+    color: var(--colorAccentWhite);
+    margin: 0 auto;
+}
+
+.centered {
+    text-align: center;
+    margin: auto;
+}
+
+div.bottom {
+    margin-top: 40px;
+}
+
+.noplaceholder {
+    margin: 0;
+}
+
+.fillSpace {
+    width: 100%;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f061";
+    font-size: 0.75em;
+    text-align: center;
+    vertical-align: middle;
+}
