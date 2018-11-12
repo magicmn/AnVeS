@@ -21,7 +21,7 @@ public class DBController {
 		return instance;
 	}
 	
-	private DBController() {};
+	private DBController() {}
 	
 	//--------------------------------------------------------------
 	
