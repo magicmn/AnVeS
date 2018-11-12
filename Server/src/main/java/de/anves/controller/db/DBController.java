@@ -1,4 +1,4 @@
-package main.java.de.anves.controller.db;
+package de.anves.controller.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,4 +1,4 @@
-package src.main.java.de.anves.model.transfer;
+package de.anves.model.transfer;
 
 
 import java.io.Serializable;

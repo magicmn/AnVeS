@@ -1,4 +1,4 @@
-package main.java.de.anves.controller.server;
+package de.anves.controller.server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
