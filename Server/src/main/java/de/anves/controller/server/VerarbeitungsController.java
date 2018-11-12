@@ -1,4 +1,4 @@
-package controller.server;
+package main.java.de.anves.controller.server;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -7,10 +7,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.Socket;
 import java.util.LinkedList;
-import java.util.List;
 
-
-import model.transfer.TransferObject;
+import src.main.java.de.anves.model.transfer.TransferObject;
 
 public class VerarbeitungsController extends Thread {
 
