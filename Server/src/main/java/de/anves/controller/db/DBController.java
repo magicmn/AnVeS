@@ -12,7 +12,7 @@ public class DBController {
 	
 	/**
 	 * Singolton Pattern
-	 * @return
+	 * @return intstance
 	 */
 	public static DBController getInstance() {
 		if(instance == null) {
@@ -25,7 +25,7 @@ public class DBController {
 	
 	//--------------------------------------------------------------
 	
-	private static final String URL = "172.25.13.231";
+	private static final String URL = "jdbc:mysql://172.25.13.231/anves";
 	private static final String USER = "root";
 	private static final String PASSWORT = "";
 	private static final String DRIVER = "com.mysql.jdbc.Driver";

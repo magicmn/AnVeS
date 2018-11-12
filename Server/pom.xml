@@ -1,35 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>anves</artifactId>
-    <groupId>de.anves</groupId>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>anves</artifactId>
+        <groupId>de.anves</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>server</artifactId>
     <version>1.0-SNAPSHOT</version>
-  </parent>
+    <packaging>jar</packaging>
 
-  <artifactId>server</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+    <name>server</name>
+    <url>https://github.com/magicmn/AnVeS</url>
 
-  <name>server</name>
-  <url>https://github.com/magicmn/AnVeS</url>
-
- <properties>
+    <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
-  
 
-  <dependencies>
-  
-  
-      <dependency>
-      <groupId>de.anves</groupId>
-      <artifactId>model</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
-      
-  
-    
-  </dependencies>
+
+    <dependencies>
+
+
+        <dependency>
+            <groupId>de.anves</groupId>
+            <artifactId>model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.6</version>
+        </dependency>
+
+
+    </dependencies>
 </project>
