@@ -10,12 +10,9 @@
   <name>anves</name>
   <url>https://github.com/magicmn/AnVeS</url>
 
-  <properties>
-
+<properties>
 <maven.compiler.target>1.8</maven.compiler.target>
-
 <maven.compiler.source>1.8</maven.compiler.source>
-
 </properties>
 
   <dependencies>

@@ -1,5 +1,6 @@
 package de.anves.model.transfer;
 
+
 import java.io.Serializable;
 
 public class TransferObject implements Serializable{
