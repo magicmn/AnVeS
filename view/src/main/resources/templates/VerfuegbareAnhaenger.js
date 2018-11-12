@@ -1,11 +1,9 @@
-var collapseComponentIdArray = [];
+var collapseComponentArray = [];
 
-function addToComponentArray(collapseComponentId) {
-    collapseComponentArrayId.push(collapseComponentId);
+function addToComponentArray() {
+
 }
 
-function toggleCollapse(enableComponentId) {
-    for(i=0; i < collapseComponentIdArray.length; i++) {
-        document.getElementById(collapseComponentArrayId)
-    }
+function toggleCollapse() {
+
 }
