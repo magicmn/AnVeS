@@ -6,7 +6,7 @@ import java.util.List;
 public class Anhaenger extends DBManaged {
 
     private long id;
-    private String anhaengerTyp;
+    private AnhaengerTypEnum anhaengerTyp;
     private String kennzeichen;
     private Date naechsteHU;
     private List<Schadensbericht> schadensBerichte;
@@ -19,10 +19,10 @@ public class Anhaenger extends DBManaged {
     public void setId(long id) {
         this.id = id;
     }
-    public String getAnhaengerTyp() {
+    public AnhaengerTypEnum getAnhaengerTyp() {
         return anhaengerTyp;
     }
-    public void setAnhaengerTyp(String anhaengerTyp) {
+    public void setAnhaengerTyp(AnhaengerTypEnum anhaengerTyp) {
         this.anhaengerTyp = anhaengerTyp;
     }
     public String getKennzeichen() {

@@ -10,6 +10,7 @@ public class Vertrag extends DBManaged{
     private Date uebergabe;
     private Date rueckgabe;
     private Schadensbericht schadensbericht;
+    private Mitarbeiter mitarbeiter;
 
     //Getter and Setter--------------------------------------
     public long getId() {
@@ -48,5 +49,10 @@ public class Vertrag extends DBManaged{
     public void setSchadensbericht(Schadensbericht schadensbericht) {
         this.schadensbericht = schadensbericht;
     }
-
+    public Mitarbeiter getMitarbeiter() {
+        return mitarbeiter;
+    }
+    public void setMitarbeiter(Mitarbeiter mitarbeiter) {
+        this.mitarbeiter = mitarbeiter;
+    }
 }
