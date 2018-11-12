@@ -32,15 +32,61 @@
     <div class="form-group row">
         <label for="kennzeichen" class="col-sm-2 col-form-label">Kennzeichen</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="kennzeichen">
+            <input type="text" class="form-control" id="kennzeichen" disabled>
         </div>
     </div>
     <div class="form-group row">
-        <label for="anhaengerTyp" class="col-sm-2 col-form-label">Kennzeichen</label>
+        <label for="anhaengerTyp" class="col-sm-2 col-form-label">Anhängertyp</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="kennzeichen">
+            <input type="text" class="form-control" id="anhaengerTyp" disabled>
         </div>
     </div>
+    <div class="form-group row">
+        <label for="naechsteHU" class="col-sm-2 col-form-label">Nächste HU</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="naechsteHU" disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="tarif" class="col-sm-2 col-form-label">Tarif</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <input type="text" class="form-control col-sm-2" id="tarifnummer" disabled>
+                <input type="text" class="form-control" id="tarifbezeichnung" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="tagespreisEur" class="col-sm-2 col-form-label">Tagespreis in €</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="tagespreisEur" disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="gesamtpreisEur" class="col-sm-2 col-form-label">Gesamtpreis in €</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <input type="text" class="form-control" id="gesamtpreisEur" disabled>
+                <div class="input-group-append">
+                    <label for="enthalteneMwst" class="input-group-text">enthaltene Mwst.</label>
+                </div>
+                <input type="text" class="form-control col-sm-3" id="enthalteneMwst" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row border-top" style="padding: 10px;">
+            <label for="tarifoptionSelbstebteiligung" class="col-sm-2 col-form-label">Tarifoption</label>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tarifoption" id="tarifoptionSelbstebteiligung" value="selbstbeteiligung" checked>
+                    <label class="form-check-label" for="tarifoptionSelbstebteiligung">Selbstbeteiligung 1000€</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tarifoption" id="tarifoptionKeineSB" value="keineSelbstbeteiligung">
+                    <label class="form-check-label" for="tarifoptionKeineSB">Ohne Selbstbeteiligung</label>
+                </div>
+            </div>
+        </div>
     <div class="form-group row bottom">
         <div class="col-sm-6">
             <button type="submit" class="btn btn-dark btn-block">Tarif wählen</button>
