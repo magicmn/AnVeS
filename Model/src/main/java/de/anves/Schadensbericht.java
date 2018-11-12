@@ -2,7 +2,7 @@ package de.anves;
 
 import java.util.Date;
 
-public class Schadensbericht {
+public class Schadensbericht extends DBManaged{
 
     private long id;
     private String beschreibung;

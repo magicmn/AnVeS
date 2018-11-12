@@ -2,7 +2,7 @@ package de.anves;
 
 import java.util.Date;
 
-public class Reservierung {
+public class Reservierung extends DBManaged {
 
     private long reservierungsId;
     private Anhaenger anhaenger;

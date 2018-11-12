@@ -3,7 +3,7 @@ package de.anves;
 import java.util.Date;
 import java.util.List;
 
-public class Anhaenger {
+public class Anhaenger extends DBManaged {
 
     private long id;
     private String anhaengerTyp;
