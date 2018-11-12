@@ -11,7 +11,6 @@ public class Anhaenger {
     private Date naechsteHU;
     private List<Schadensbericht> schadensBerichte;
 
-
 //Getter and Setter-------------------------------
 
     public long getId() {
