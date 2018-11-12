@@ -2,7 +2,7 @@ package de.anves;
 
 import java.util.List;
 
-public class Mitarbeiter {
+public class Mitarbeiter extends DBManaged {
 
     private long id;
     private String nachname;

@@ -2,7 +2,7 @@ package de.anves;
 
 import java.util.Date;
 
-public class Kunde {
+public class Kunde extends DBManaged{
     private long id;
     private String vorname;
     private String nachname;

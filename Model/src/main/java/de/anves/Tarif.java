@@ -2,7 +2,7 @@ package de.anves;
 
 import java.util.Date;
 
-public class Tarif {
+public class Tarif extends DBManaged{
 
     private String anhaengerTyp;
     private long tarifNummer;
