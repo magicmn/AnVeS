@@ -1,7 +1,0 @@
-package de.anves;
-
-public enum RollenEnum {
-
-    RESERVIERUNGSMITARBEITER, RUECKGABEMITARBEITER, UEBERGABEPARAMETER
-
-}
