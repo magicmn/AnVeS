@@ -55,3 +55,12 @@ div.bottom {
     text-align: center;
     vertical-align: middle;
 }
+
+.breadcrumb-item+.breadcrumb-item.active::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f051";
+    font-size: 0.8em;
+    text-align: center;
+    vertical-align: middle;
+}
