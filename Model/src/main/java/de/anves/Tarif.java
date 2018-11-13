@@ -23,38 +23,44 @@ public class Tarif extends DBManaged{
     public String getAnhaengerTyp() {
         return anhaengerTyp;
     }
-    public void setAnhaengerTyp(String anhaengerTyp) {
+    public Tarif setAnhaengerTyp(String anhaengerTyp) {
         this.anhaengerTyp = anhaengerTyp;
+        return this;
     }
     public long getTarifNummer() {
         return tarifNummer;
     }
-    public void setTarifNummer(long tarifNummer) {
+    public Tarif setTarifNummer(long tarifNummer) {
         this.tarifNummer = tarifNummer;
+        return this;
     }
     public String getTarifBezeichnung() {
         return tarifBezeichnung;
     }
-    public void setTarifBezeichnung(String tarifBezeichnung) {
+    public Tarif setTarifBezeichnung(String tarifBezeichnung) {
         this.tarifBezeichnung = tarifBezeichnung;
+        return this;
     }
     public Date getGueltigAb() {
         return gueltigAb;
     }
-    public void setGueltigAb(Date gueltigAb) {
+    public Tarif setGueltigAb(Date gueltigAb) {
         this.gueltigAb = gueltigAb;
+        return this;
     }
     public Date getGueltigBis() {
         return gueltigBis;
     }
-    public void setGueltigBis(Date gueltigBis) {
+    public Tarif setGueltigBis(Date gueltigBis) {
         this.gueltigBis = gueltigBis;
+        return this;
     }
     public double getPreis() {
         return preis;
     }
-    public void setPreis(double preis) {
+    public Tarif setPreis(double preis) {
         this.preis = preis;
+        return this;
     }
 
 }

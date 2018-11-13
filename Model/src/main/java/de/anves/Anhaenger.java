@@ -16,32 +16,37 @@ public class Anhaenger extends DBManaged {
     public long getId() {
         return id;
     }
-    public void setId(long id) {
+    public Anhaenger setId(long id) {
         this.id = id;
+        return this;
     }
     public AnhaengerTypEnum getAnhaengerTyp() {
         return anhaengerTyp;
     }
-    public void setAnhaengerTyp(AnhaengerTypEnum anhaengerTyp) {
+    public Anhaenger setAnhaengerTyp(AnhaengerTypEnum anhaengerTyp) {
         this.anhaengerTyp = anhaengerTyp;
+        return this;
     }
     public String getKennzeichen() {
         return kennzeichen;
     }
-    public void setKennzeichen(String kennzeichen) {
+    public Anhaenger setKennzeichen(String kennzeichen) {
         this.kennzeichen = kennzeichen;
+        return this;
     }
     public Date getNaechsteHU() {
         return naechsteHU;
     }
-    public void setNaechsteHU(Date naechsteHU) {
+    public Anhaenger setNaechsteHU(Date naechsteHU) {
         this.naechsteHU = naechsteHU;
+        return this;
     }
     public List<Schadensbericht> getSchadensBerichte() {
         return schadensBerichte;
     }
-    public void setSchadensBerichte(List<Schadensbericht> schadensBerichte) {
+    public Anhaenger setSchadensBerichte(List<Schadensbericht> schadensBerichte) {
         this.schadensBerichte = schadensBerichte;
+        return this;
     }
 
 }

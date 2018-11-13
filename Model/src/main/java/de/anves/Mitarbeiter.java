@@ -14,32 +14,37 @@ public class Mitarbeiter extends DBManaged {
     public long getId() {
         return id;
     }
-    public void setId(long id) {
+    public Mitarbeiter setId(long id) {
         this.id = id;
+        return this;
     }
     public String getNachname() {
         return nachname;
     }
-    public void setNachname(String nachname) {
+    public Mitarbeiter setNachname(String nachname) {
         this.nachname = nachname;
+        return this;
     }
     public String getVorname() {
         return vorname;
     }
-    public void setVorname(String vorname) {
+    public Mitarbeiter setVorname(String vorname) {
         this.vorname = vorname;
+        return this;
     }
     public boolean isGeschlecht() {
         return geschlecht;
     }
-    public void setGeschlecht(boolean geschlecht) {
+    public Mitarbeiter setGeschlecht(boolean geschlecht) {
         this.geschlecht = geschlecht;
+        return this;
     }
     public List<RollenEnum> getRollenliste() {
         return rollenliste;
     }
-    public void setRollenliste(List<RollenEnum> rollenliste) {
+    public Mitarbeiter setRollenliste(List<RollenEnum> rollenliste) {
         this.rollenliste = rollenliste;
+        return this;
     }
 
 }
