@@ -1,0 +1,96 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="AnVeS - Vertrag auswählen">
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap-v4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/fontawesome-free-v5.5.0-web/css/solid.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <script type="text/javascript" src="lib/jQuery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap-v4.1.3/js/bootstrap.min.js"></script>
+<header>
+    <div>
+        <h1>AnVeS</h1>
+    </div>
+</header>
+<nav>
+    <ol class="breadcrumb dark-bg">
+        <li class="breadcrumb-item">Anhänger suchen</li>
+        <li class="breadcrumb-item">Verfügbare Anhänger</li>
+        <li class="breadcrumb-item">Tarif wählen</li>
+        <li class="breadcrumb-item">Kunde suchen</li>
+        <li class="breadcrumb-item">Kunde auswählen</li>
+        <li class="breadcrumb-item">Kunde anlegen</li>
+        <li class="breadcrumb-item">Vertrag suchen</li>
+        <li class="breadcrumb-item active">Vertrag auswählen</li>
+        <li class="breadcrumb-item">Status ändern</li>
+    </ol>
+</nav>
+
+<section class="container-fluid col-sm-9">
+<form>
+    <div class="form-group row">
+            <table class="table table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Vertragsnummer</th>
+                        <th scope="col">Mietzeitraum</th>
+                        <th scope="col">Kundennummer</th>
+                        <th scope="col">Name/Vorname</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">
+                            <label class="form-check noplaceholder">
+                                <input class="form-check-input position-static" type="radio" id="row1" name="kundenAuswahl">
+                            </label>
+                        </th>
+                        <td><label class="noplaceholder fillSpace" for="row1">Platzhalter1a</label></td>
+                        <td><label class="noplaceholder fillSpace" for="row1">Platzhalter1b</label></td>
+                        <td><label class="noplaceholder fillSpace" for="row1">Platzhalter1c</label></td>
+                        <td><label class="noplaceholder fillSpace" for="row1">Platzhalter1c</label></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <label class="form-check noplaceholder">
+                                <input class="form-check-input position-static" type="radio" id="row2" name="kundenAuswahl">
+                            </label>
+                        </th>
+                        <td><label class="noplaceholder fillSpace" for="row2">Platzhalter2a</label></td>
+                        <td><label class="noplaceholder fillSpace" for="row2">Platzhalter2b</label></td>
+                        <td><label class="noplaceholder fillSpace" for="row2">Platzhalter2c</label></td>
+                        <td><label class="noplaceholder fillSpace" for="row2">Platzhalter2d</label></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <label class="form-check noplaceholder">
+                                <input class="form-check-input position-static" type="radio" id="row3" name="kundenAuswahl">
+                            </label>
+                        </th>
+                        <td><label class="noplaceholder fillSpace" for="row3">Platzhalter3a</label></td>
+                        <td><label class="noplaceholder fillSpace" for="row3">Platzhalter3b</label></td>
+                        <td><label class="noplaceholder fillSpace" for="row3">Platzhalter3c</label></td>
+                        <td><label class="noplaceholder fillSpace" for="row3">Platzhalter4c</label></td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+    <div class="form-group row bottom">
+        <div class="col-sm-6">
+            <button type="submit" class="btn btn-primary btn-block">Vertrag wählen</button>
+        </div>
+        <div class="col-sm-6">
+            <button type="reset" class="btn btn-danger btn-block">Abbrechen</button>
+        </div>
+    </div>
+</form>
+</section>
+
+<footer>
+</footer>
+</body>
+</html>
