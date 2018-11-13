@@ -1,5 +1,7 @@
 package de.anves.controller.dao;
 
+
+/**
 import de.anves.Mitarbeiter;
 import de.anves.Vertrag;
 import de.anves.controller.db.DBController;
@@ -34,6 +36,7 @@ public class VertragDAO implements CRUDInterface<Vertrag> {
      * @version 1.0
      * @return the created Vertrag object in DB
      */
+/*
     @Override
     public Vertrag create(Vertrag value) {
         String createsql ="INSERT INTO vertrag (mitarbeiterid, tarifid) VALUES ("+value.getMitarbeiter().getId()+
@@ -60,6 +63,7 @@ public class VertragDAO implements CRUDInterface<Vertrag> {
      * @author Leon
      * @return the Vertrag object from DB
      */
+    /*
     public Vertrag read(long id){
         String selectsql ="SELECT * FROM vertrag WHERE vertragsid = "+id;
 
@@ -82,6 +86,7 @@ public class VertragDAO implements CRUDInterface<Vertrag> {
      *@author: Leon
      *@version: 1.0
      */
+    /*
     @Override
     public Vertrag update(Vertrag value) {
         String updatesql = "UPDATE vertrag SET mitarbeiterid = "+value.getMitarbeiter().getId()+
@@ -107,7 +112,7 @@ public class VertragDAO implements CRUDInterface<Vertrag> {
      * @param value: the Vertrag object you want to delete in DB
      * @return a boolean to show if it worked or not
      */
-
+/*
     @Override
     public boolean delete(Vertrag value) {
 
@@ -143,3 +148,4 @@ public class VertragDAO implements CRUDInterface<Vertrag> {
         return result;
     }
 }
+*/

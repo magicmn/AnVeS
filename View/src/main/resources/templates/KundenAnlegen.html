@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>KundenAnlegen TODO</title>
+</head>
+<body>
+
+
+<h1>Form</h1>
+<form action="#" th:action="@{/KundenAnlegen}" th:object="${Kunde}" method="post">
+
+
+    <p>nachname: <input type="text" th:field="*{nachname}" /></p>
+    <p>vorname: <input type="text" th:field="*{vorname}" /></p>
+    <p>Geburtsdatum: <input type="text" th:field="*{Geburtsdatum}" /></p>
+    <p>Bankverbindung: <input type="text" th:field="*{Bankverbindun}" /></p>
+    <p>Plz: <input type="text" th:field="*{Plz}" /></p>
+    <p>Ort: <input type="text" th:field="*{Ort}" /></p>
+    <p>Strasse: <input type="text" th:field="*{Strasse}" /></p>
+    <p>Hausnummer: <input type="text" th:field="*{Hausnummer}" /></p>
+
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+</body>
+</html>
