@@ -36,25 +36,25 @@ public class ReservierungDAO implements CRUDInterface<Reservierung> {
     public Reservierung create(Reservierung value) {
 
         db.connect();
-        String createSQL = "INSERT INTO reservierung(`Reservierungsid`, `anhaengerid`, `von`, `bis`, `kundenid`) VALUES ("
+        String createSQL = "INSERT INTO reservierung(Reservierungsid, anhaengerid, von, bis, kundenid) VALUES ("
 
                 + "'" + value.getReservierungsId() + "',"
                 + "'" + value.getAnhaenger() + "',"
-                + "'" + value.getVertragBeginn() + "',"
-                + "'" + value.getVertragsEnde() + "',"
+                + "'" + value.getVertragBeginn().getTime() + "',"
+                + "'" + value.getVertragsEnde().getTime() + "',"
                 + "'" + value.getKunde() + "');";
 
 
-        String selectsql = "SELECT * FROM reservierung  WHERE reservierungid = max(reservierungid)";
+        String selectsql = "SELECT * FROM reservierung  WHERE reservierungsid=(select max(reservierungsid) from reservierung)";
 
 
         try {
-            int result = db.executeUpdate(selectsql);
-            if (result == 1) {
-                return null;
-            }
+            ResultSet rs = db.executeQuery(selectsql);
+
+   return convertRsToReservierung(rs);
+
         } catch (SQLException e) {
-            System.out.println("MitarbeiterDAO: Create User failed");
+            System.out.println("ReservierungsDAO: Create User failed");
             e.printStackTrace();
         } finally {
             try {
@@ -95,18 +95,19 @@ public class ReservierungDAO implements CRUDInterface<Reservierung> {
 
     @Override
     public Reservierung update(Reservierung value) {
+        db.connect();
         String updatesql = "UPDATE reservierung SET "
                 + "id=" + value.getReservierungsId() + ","
 
-                + "nachname=" + value.getAnhaenger() + "',"
-                + "Vorname=" + value.getVertragBeginn() + "',"
-                + "Geburtsdatum=" + value.getVertragsEnde().getTime() + "',"
-                + "Bankverbindung=" + value.getKunde() + "',"
+                + "anhaenger=" + value.getAnhaenger() + "',"
+                + "Vetragsbeginn=" + value.getVertragBeginn().getTime() + "',"
+                + "Vertragsende=" + value.getVertragsEnde().getTime() + "',"
+                + "Kunde=" + value.getKunde() + "',"
                 + ")";
 
         String selectsql = "SELECT * FROM reservierung WHERE reservierungsId = " + value.getReservierungsId();
 
-        db.connect();
+
         try {
             db.executeUpdate(updatesql);
             ResultSet rs = db.executeQuery(selectsql);
@@ -135,13 +136,13 @@ public class ReservierungDAO implements CRUDInterface<Reservierung> {
         String deletesql = "DELETE FROM kunde WHERE id=" + value.getReservierungsId();
 
         db.connect();
-        try {
-            if (db.executeUpdate(deletesql) == 0) {
-                return true;
-            }
 
+        String sql = "DELETE FROM Mitarbeiter WHERE Mitarbeiterid = " + value.getReservierungsId();
+        try {
+            db.executeUpdate(sql);
+            return true;
         } catch (SQLException e) {
-            System.err.println("ReservierungDao:DELETE FROM kunde: Fehler");
+            System.out.println("ReservierungsDAO: delete failed");
             e.printStackTrace();
         } finally {
             try {
@@ -150,9 +151,9 @@ public class ReservierungDAO implements CRUDInterface<Reservierung> {
                 e.printStackTrace();
             }
         }
-
         return false;
     }
+
 
     /**
      * Konvertiert ein ResultSet zu einer Reservierung  <p>
@@ -167,7 +168,7 @@ public class ReservierungDAO implements CRUDInterface<Reservierung> {
         Reservierung reservierung = new Reservierung();
         while (rs.next()) {
 
-            reservierung.setReservierungsId(rs.getLong("reservierungid"));
+            reservierung.setReservierungsId(rs.getLong("reservierungsid"));
            // reservierung.setAnhaenger(new AnhaengerDAO().read(id));
             reservierung.setVertragBeginn(new Date(rs.getLong("Vertragsbeginn")));
             reservierung.setVertragsEnde(new Date(rs.getLong("Vetragsende")));
