@@ -13,16 +13,16 @@ public class KundenAnlegenController {
 
 
 
-/*
-    @GetMapping("/KundenAnlegen")
+
+    @GetMapping("/KundeAnlegen")
     public String kundenAnlegenForm(Model model) {
-        model.addAttribute("KundenAnlegen", new Kunde());
-        return "KundenAnlegen";
+        //model.addAttribute("KundeAnlegen", new Kunde());
+        return "KundeAnlegen";
     }
-*/
 
 
-    @PostMapping("/KundenAnlegen")
+
+    @PostMapping("/KundeAnlegen")
     public String kundenAnlegenSubmit(@ModelAttribute Kunde kunde) {
         return "result";
     }
