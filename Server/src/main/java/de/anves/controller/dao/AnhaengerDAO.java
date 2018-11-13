@@ -145,9 +145,9 @@ public class AnhaengerDAO implements CRUDInterface<Anhaenger> {
      * @return Liste verfügbarer Anhänger
      */
 
-    private ArrayList<Anhaenger> readList(Date start, Date end, AnhaengerTypEnum anhaengerTyp){
+    public ArrayList<Anhaenger> readList(Date start, Date end, AnhaengerTypEnum anhaengerTyp){
         ArrayList<Anhaenger> result;
-        String selectsql = "SELECT * anhänger WHERE anhängetyp = "+anhaengerTyp.ordinal()+" AND anhaengerid NOT IN " +
+        String selectsql = "SELECT * FROM anhänger WHERE anhängetyp = "+anhaengerTyp.ordinal()+" AND anhaengerid NOT IN " +
                 "( SELECT anhaengerid FROM `reservierung` WHERE bis < "+start+" OR von > "+end+")";
         db.connect();
         try {
