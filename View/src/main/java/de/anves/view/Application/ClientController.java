@@ -1,4 +1,4 @@
-package de.anves.view;
+package de.anves.view.Application;
 
 import de.anves.model.transfer.TransferObject;
 
