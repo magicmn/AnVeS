@@ -19,26 +19,30 @@ public class Schadensbericht extends DBManaged{
     public long getId() {
         return id;
     }
-    public void setId(long id) {
+    public Schadensbericht setId(long id) {
         this.id = id;
+        return this;
     }
     public String getBeschreibung() {
         return beschreibung;
     }
-    public void setBeschreibung(String beschreibung) {
+    public Schadensbericht setBeschreibung(String beschreibung) {
         this.beschreibung = beschreibung;
+        return this;
     }
     public Date getDatum() {
         return datum;
     }
-    public void setDatum(Date datum) {
+    public Schadensbericht setDatum(Date datum) {
         this.datum = datum;
+        return this;
     }
     public String getAnmerkungKunde() {
         return anmerkungKunde;
     }
-    public void setAnmerkungKunde(String anmerkungKunde) {
+    public Schadensbericht setAnmerkungKunde(String anmerkungKunde) {
         this.anmerkungKunde = anmerkungKunde;
+        return this;
     }
 
 }

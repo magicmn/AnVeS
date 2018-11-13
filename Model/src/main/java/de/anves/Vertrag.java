@@ -10,49 +10,64 @@ public class Vertrag extends DBManaged{
     private Date uebergabe;
     private Date rueckgabe;
     private Schadensbericht schadensbericht;
-    private Mitarbeiter mitarbeiter;
+    private Mitarbeiter uebergabeMitarbeiter;
+    private Mitarbeiter rueckgabeMitarbeiter;
 
     //Getter and Setter--------------------------------------
     public long getId() {
         return id;
     }
-    public void setId(long id) {
+    public Vertrag setId(long id) {
         this.id = id;
+        return this;
     }
     public Reservierung getReservierung() {
         return reservierung;
     }
-    public void setReservierung(Reservierung reservierung) {
+    public Vertrag setReservierung(Reservierung reservierung) {
         this.reservierung = reservierung;
+        return this;
     }
     public Tarif getTarif() {
         return tarif;
     }
-    public void setTarif(Tarif tarif) {
+    public Vertrag setTarif(Tarif tarif) {
         this.tarif = tarif;
+        return this;
     }
     public Date getUebergabe() {
         return uebergabe;
     }
-    public void setUebergabe(Date uebergabe) {
+    public Vertrag setUebergabe(Date uebergabe) {
         this.uebergabe = uebergabe;
+        return this;
     }
     public Date getRueckgabe() {
         return rueckgabe;
     }
-    public void setRueckgabe(Date rueckgabe) {
+    public Vertrag setRueckgabe(Date rueckgabe) {
         this.rueckgabe = rueckgabe;
+        return this;
     }
     public Schadensbericht getSchadensbericht() {
         return schadensbericht;
     }
-    public void setSchadensbericht(Schadensbericht schadensbericht) {
+    public Vertrag setSchadensbericht(Schadensbericht schadensbericht) {
         this.schadensbericht = schadensbericht;
+        return this;
     }
-    public Mitarbeiter getMitarbeiter() {
-        return mitarbeiter;
+    public Mitarbeiter getUebergabeMitarbeiter() {
+        return uebergabeMitarbeiter;
     }
-    public void setMitarbeiter(Mitarbeiter mitarbeiter) {
-        this.mitarbeiter = mitarbeiter;
+    public Vertrag setUebergabeMitarbeiter(Mitarbeiter uebergabeMitarbeiter) {
+        this.uebergabeMitarbeiter = uebergabeMitarbeiter;
+        return this;
+    }
+    public Mitarbeiter getRueckgabeMitarbeiter() {
+        return rueckgabeMitarbeiter;
+    }
+    public Vertrag setRueckgabeMitarbeiter(Mitarbeiter rueckgabeMitarbeiter) {
+        this.rueckgabeMitarbeiter = rueckgabeMitarbeiter;
+        return this;
     }
 }
