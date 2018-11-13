@@ -19,6 +19,12 @@ import de.anves.controller.db.DBController;
 public class AnhaengerDAO implements CRUDInterface<Anhaenger>{
     private DBController db = DBController.getInstance();
     public static void main(String[] args) {
+/*        AnhaengerDAO dao = new AnhaengerDAO();
+        Anhaenger anhaenger = new Anhaenger();
+        anhaenger.setAnhaengerTyp(AnhaengerTypEnum.EINACHSER);
+        anhaenger.setId(13);
+        anhaenger.setNaechsteHU(new Date());
+        anhaenger.setKennzeichen();*/
 
 
     }
