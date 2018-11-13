@@ -1,0 +1,73 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="AnVeS - Kunden suchen">
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap-v4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/fontawesome-free-v5.5.0-web/css/solid.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<header>
+    <div>
+        <h1>AnVeS</h1>
+    </div>
+</header>
+<nav>
+    <ol class="breadcrumb dark-bg">
+        <li class="breadcrumb-item">Anhänger suchen</li>
+        <li class="breadcrumb-item">Verfügbare Anhänger</li>
+        <li class="breadcrumb-item">Tarif wählen</li>
+        <li class="breadcrumb-item">Kunde suchen</li>
+        <li class="breadcrumb-item">Kunde auswählen</li>
+        <li class="breadcrumb-item">Kunde anlegen</li>
+        <li class="breadcrumb-item active">Vertrag suchen</li>
+        <li class="breadcrumb-item">Vertrag auswählen</li>
+        <li class="breadcrumb-item">Status ändern</li>
+    </ol>
+</nav>
+
+<section class="container-fluid col-sm-9">
+<form>
+    <div class="form-group row">
+        <label for="vertragsnummer" class="col-sm-2 col-form-label">Vertragsnummer</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" id="vertragsnummer">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="kundenummer" class="col-sm-2 col-form-label">Kundennummer</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" id="kundenummer">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="mietzeitraumVon" class="col-sm-2 col-form-label">Mietzeitraum von</label>
+        <div class="row col">
+            <div class="col-sm-5">
+                <input type="date" class="form-control" id="mietzeitraumVon">
+            </div>
+            <div class="col-sm-2 centered">
+                <label for="mietzeitraumBis" class="col-form-label centered"> bis </label>
+            </div>
+            <div class="col-sm-5">
+                <input type="date" class="form-control" id="mietzeitraumBis">
+            </div>
+        </div>
+    </div>
+    <div class="form-group row bottom">
+        <div class="col-sm-6">
+            <button type="submit" class="btn btn-primary btn-block">Anhänger suchen</button>
+        </div>
+        <div class="col-sm-6">
+            <button type="reset" class="btn btn-danger btn-block">Zurücksetzen</button>
+        </div>
+    </div>
+</form>
+</section>
+
+<footer>
+</footer>
+</body>
+</html>

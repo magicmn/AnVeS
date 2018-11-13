@@ -1,4 +1,4 @@
-<html>
+﻿<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -29,7 +29,7 @@
 </nav>
 
 <section class="container-fluid col-sm-9">
-<form>
+<form action="#" th:action="@{/KundenAnlegen}" th:object="${Kunde}" method="post">
     <div class="form-group row">
         <label for="kundennummer" class="col-sm-2 col-form-label">Kundennummer</label>
         <div class="col-sm-10">
@@ -39,31 +39,43 @@
     <div class="form-group row">
         <label for="name" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="name">
+            <input type="text" class="form-control" id="name" th:field="*{nachname}">
         </div>
     </div>
     <div class="form-group row">
         <label for="vorname" class="col-sm-2 col-form-label">Vorname</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="vorname">
+            <input type="text" class="form-control" id="vorname" th:field="*{vorname}">
         </div>
     </div>
     <div class="form-group row">
         <label for="geburtsdatum" class="col-sm-2 col-form-label">Geburtsdatum</label>
         <div class="col-sm-10">
-            <input type="date" class="form-control" id="geburtsdatum">
+            <input type="date" class="form-control" id="geburtsdatum"  th:field="*{Geburtsdatum}">
         </div>
     </div>
     <div class="form-group row">
         <label for="iban" class="col-sm-2 col-form-label">IBAN</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="iban">
+            <input type="text" class="form-control" id="iban" th:field="*{Bankverbindung}">
         </div>
     </div>
     <div class="form-group row">
-        <label for="plzUOrt" class="col-sm-2 col-form-label">Poszleitzahl/Ort</label>
+        <label for="plz" class="col-sm-2 col-form-label">Poszleitzahl/Ort</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="iban">
+            <div class="input-group">
+                <input type="number" class="form-control col-sm-3" id="plz" th:field="*{Plz}">
+                <input type="text" class="form-control" id="ort" th:field="*{Ort}">
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="straße" class="col-sm-2 col-form-label">Straße/Hausnummer</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <input type="text" class="form-control" id="straße" th:field="*{Strasse}">
+                <input type="number" class="form-control col-sm-2" id="hausnummer" th:field="*{Hausnummer}">
+            </div>
         </div>
     </div>
     <div class="form-group row bottom">
