@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Schadensbericht extends DBManaged{
 
-    private long id;
+    private long anhaengerid;
     private String beschreibung;
     private Date datum;
     private String anmerkungKunde;
@@ -17,10 +17,10 @@ public class Schadensbericht extends DBManaged{
 
     //Getter and Setter--------------------------------------------------
     public long getId() {
-        return id;
+        return anhaengerid;
     }
     public Schadensbericht setId(long id) {
-        this.id = id;
+        this.anhaengerid = id;
         return this;
     }
     public String getBeschreibung() {
