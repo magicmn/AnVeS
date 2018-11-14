@@ -29,41 +29,39 @@
 </nav>
 
 <section class="container-fluid col-sm-9">
-    <form>
+    <form action="#" th:action="@{/VertragSuchen}" th:object="${suchform}" method="post">
         <div class="form-group row">
-            <label for="vertragsnummer" class="col-sm-2 col-form-label">Vertragsnummer</label>
+            <label for="vertragsnummer" class="col-sm-2 col-form-label" >Vertragsnummer</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" id="vertragsnummer">
+                <input type="number" class="form-control" id="vertragsnummer" th:field="*{vertragID}">
             </div>
         </div>
         <div class="form-group row">
             <label th:for="kundenummer" class="col-sm-2 col-form-label">Kundennummer</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" th:id="kundenummer">
+                <input type="number" class="form-control" th:id="kundenummer" th:field="*{kundenID}">
             </div>
         </div>
         <div class="form-group row">
-            <label th:for="mietzeitraumVon" class="col-sm-2 col-form-label">Mietzeitraum von</label>
+            <label th:for="mietzeitraumVon" class="col-sm-2 col-form-label" >Mietzeitraum von</label>
             <div class="row col">
                 <div class="col-sm-5">
-                    <input type="date" class="form-control" th:id="mietzeitraumVon">
+                    <input type="date" class="form-control" th:id="mietzeitraumVon" th:field="*{von}">
                 </div>
                 <div class="col-sm-2 centered">
                     <label th:for="mietzeitraumBis" class="col-form-label centered"> bis </label>
                 </div>
                 <div class="col-sm-5">
-                    <input type="date" class="form-control" th:id="mietzeitraumBis">
+                    <input type="date" class="form-control" th:id="mietzeitraumBis" th:field="*{bis}">
                 </div>
             </div>
         </div>
         <div class="form-group row bottom">
             <div class="col-sm-6">
-                <button type="submit" class="btn btn-primary btn-block">Anhänger suchen</button>
+                <button type="submit" class="btn btn-primary btn-block">Vertrag suchen</button>
             </div>
             <div class="col-sm-6">
-                <form action="/AnhaengerAuswaehlen" type="get">
-                    <button class="btn btn-danger btn-block" type="submit">Abbrechen</button>
-                </form>
+                    <button class="btn btn-danger btn-block" type="reset">Abbrechen</button>
             </div>
         </div>
     </form>

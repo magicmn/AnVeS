@@ -5,6 +5,7 @@ import de.anves.Kunde;
 import de.anves.Mitarbeiter;
 import de.anves.Reservierung;
 import de.anves.Vertrag;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,7 +26,21 @@ public class VertragController {
 
     @GetMapping("/VertragAuswaehlen")
     public String vertragAuswaehlen(@RequestParam(required = false) ArrayList<Vertrag> vertragsliste, Model model) {
-        vertragsliste = new ArrayList<>();
+
+
+
+        return "VertragAuswaehlen";
+    }
+    @GetMapping("/VertragSuchen")
+    public String getVertragSuchen(Model model) {
+            model.addAttribute("suchform",new Suchform());
+
+        return "VertragSuchen";
+    }
+
+    @PostMapping("/VertragSuchen")
+    public ModelAndView postVertragSuchen(@ModelAttribute Suchform form, Model model) {
+        ArrayList<Vertrag> vertragsliste = new ArrayList<>();
         Vertrag vertrag = new Vertrag();
         vertrag.setId(123);
         vertrag.setReservierung(new Reservierung());
@@ -36,26 +53,37 @@ public class VertragController {
         vertrag.setUebergabe(new Date(100000000));
         vertrag.setRueckgabeMitarbeiter(new Mitarbeiter());
         vertragsliste.add(vertrag);
-        model.addAttribute("vertragsliste", vertragsliste);
+        model.addAttribute("vertragsliste",vertragsliste);
 
-        return "VertragAuswaehlen";
-    }
-    @GetMapping("/VertragSuchen")
-    public String getVertragSuchen(Model model) {
-        model.addAttribute("suchform",new Suchform());
+        return new ModelAndView("redirect:/VertragAuswaehlen","model",model);
 
-        return "VertragSuchen";
-    }
-    @PostMapping("/VertragSuchen")
-  public String postVertragSuchen(@ModelAttribute Suchform form, Model model) {
-      model.addAttribute("suchform",form);
 
-        return "VertragSuchen";
+
     }
     public class Suchform
     {
         private long vertragID;
         private long kundenID;
+        private String von;
+        private String bis;
+
+        public String getVon() {
+            return von;
+        }
+
+        public void setVon(String von) {
+            this.von = von;
+        }
+
+        public String getBis() {
+            return bis;
+        }
+
+        public void setBis(String bis) {
+            this.bis = bis;
+        }
+
+
 
         public long getVertragID() {
             return vertragID;
@@ -73,24 +101,8 @@ public class VertragController {
             this.kundenID = kundenID;
         }
 
-        public Date getVon() {
-            return von;
-        }
 
-        public void setVon(Date von) {
-            this.von = von;
-        }
 
-        public Date getBis() {
-            return bis;
-        }
-
-        public void setBis(Date bis) {
-            this.bis = bis;
-        }
-
-        private Date von;
-        private Date bis;
 
     }
 
