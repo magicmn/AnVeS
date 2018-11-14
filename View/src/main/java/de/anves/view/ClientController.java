@@ -7,6 +7,7 @@ import java.util.List;
 import de.anves.Anhaenger;
 
 import de.anves.AnhaengerTypEnum;
+import de.anves.Kunde;
 import de.anves.Reservierung;
 import de.anves.model.transfer.TransferAction;
 import de.anves.model.transfer.TransferObject;
@@ -95,6 +96,51 @@ public class ClientController {
         }
 
         return anhaengerListe;
+    }
+
+    /**
+     * Sucht Kunden in der Datenbank, nach übergebenene Parametern
+     * @param id    : Kundenid, nachder gesucht werden soll
+     * @return      : List<Kunde> mit Kunden aus der Datenbank die gefunden wurden
+     *
+     * @author Joern Felling
+     */
+    public List<Kunde> kundenSuchenID(long id){
+        List<Kunde> result = null; //Rückgabeliste initialisieren
+
+        return result;
+    }
+
+    /**
+     * Sucht Kunden in der Datenbank, nach übergebenene Parametern
+     * @param Nachname  : Nachname des Kunden der gesucht wird
+     * @param gebDat    : Geburtsdatum des Kunden der gesucht wird
+     * @return          : List<Kunde> mit Kunden aus der Datenbank die gefunden wurden
+     *
+     * @author Joern Felling
+     */
+    public List<Kunde> kundenSuchenNachname(String Nachname, String gebDat){
+        List<Kunde> result = null; //Rückgabeliste initialisieren
+
+        return result;
+    }
+
+    /**
+     * Sucht Kunden in der Datenbank, nach übergebenene Parametern
+     * @param Vorname   : Vorname des Kunden, der gesucht wird
+     * @param gebDat    : Geburtsdatum des Kunden, der gesucht wird
+     * @return          : List<Kunde> mit Kunden aus der Datenbank die gefunden wurden
+     *
+     * @author Joern Felling
+     */
+    public List<Kunde> kundenSuchenVorname(String Vorname, String gebDat){
+        List<Kunde> result = null;  //Rückgabeliste initialisieren
+
+        connectToServer();
+
+        closeConnection();
+
+        return result;
     }
 
 }
