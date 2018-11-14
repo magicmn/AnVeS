@@ -1,7 +1,6 @@
 package de.anves;
 
 public enum AnhaengerTypEnum {
-
-    EINACHSER, TANDEMACHSER, KOFFERANHAENGER, MOTORRADANHAENGER, BELIEBIGER
+    Beliebiger, Einachser, Tandemachser, Kofferanhaenger, Motorradanhaenger
 
 }
