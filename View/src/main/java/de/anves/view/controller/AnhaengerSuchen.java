@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -21,6 +22,9 @@ public class AnhaengerSuchen {
 
     @PostMapping("/AnhaengerSuchen")
     public String anhaengerSuchenSubmit(@ModelAttribute List<Anhaenger> anhaengerList) {
+        anhaengerList = new ArrayList<>();
         return "VerfuegbareAnhaenger";
     }
+
+
 }
