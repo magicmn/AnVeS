@@ -20,6 +20,8 @@ import java.util.List;
 public class ReservierungDAO implements CRUDInterface<Reservierung> {
 
     private static DBController db = DBController.getInstance();
+    private KundeDAO kundedao = new KundeDAO();
+    private AnhaengerDAO anhaengerDAO = new AnhaengerDAO();
 
 
     public ReservierungDAO() {
@@ -36,25 +38,28 @@ public class ReservierungDAO implements CRUDInterface<Reservierung> {
     public Reservierung create(Reservierung value) {
 
         db.connect();
-        String createSQL = "INSERT INTO reservierung(Reservierungsid, anhaengerid, von, bis, kundenid) VALUES ("
-
-                + "'" + value.getReservierungsId() + "',"
-                + "'" + value.getAnhaenger() + "',"
-                + "'" + value.getVertragBeginn().getTime() + "',"
-                + "'" + value.getVertragsEnde().getTime() + "',"
-                + "'" + value.getKunde() + "');";
+        String createSQL = "INSERT INTO reservierung( anhaengerid, von, bis, kundenid) VALUES ("
+                + value.getAnhaenger().getId() + ", "
+                + value.getVertragBeginn().getTime() + ","
+                + value.getVertragsEnde().getTime() + ","
+                + value.getKunde().getId()+ ");";
 
 
         String selectsql = "SELECT * FROM reservierung  WHERE reservierungsid=(select max(reservierungsid) from reservierung)";
 
 
-        try {
-            ResultSet rs = db.executeQuery(selectsql);
 
-   return convertRsToReservierung(rs);
+        try {
+          db.executeUpdate(createSQL);
+	ResultSet rs = db.executeQuery(selectsql);
+
+           Reservierung result =  convertRsToReservierung(rs).get(0);
+
+            return null;
+
 
         } catch (SQLException e) {
-            System.out.println("ReservierungsDAO: Create User failed");
+            System.out.println("ReservierungsDAO: Create Reservierung failed");
             e.printStackTrace();
         } finally {
             try {
@@ -163,18 +168,17 @@ public class ReservierungDAO implements CRUDInterface<Reservierung> {
      * @see ResultSet
      */
 
-    private Reservierung convertRsToReservierung(ResultSet rs) throws SQLException {
+    private List<Reservierung> convertRsToReservierung(ResultSet rs) throws SQLException {
         List<Reservierung> result = new ArrayList<>();
         Reservierung reservierung = new Reservierung();
         while (rs.next()) {
 
-            reservierung.setReservierungsId(rs.getLong("reservierungsid"));
-           // reservierung.setAnhaenger(new AnhaengerDAO().read(id));
-            reservierung.setVertragBeginn(new Date(rs.getLong("Vertragsbeginn")));
-            reservierung.setVertragsEnde(new Date(rs.getLong("Vetragsende")));
-            //reservierung.setKunde(new KundeDAO().read());
-
+           reservierung.setAnhaenger(anhaengerDAO.read(rs.getLong("anhaengerid")));
+            reservierung.setVertragBeginn(new Date(rs.getLong("von")));
+            reservierung.setVertragsEnde(new Date(rs.getLong("bis")));
+            reservierung.setKunde(kundedao.read(rs.getLong("kundenid")));
+            result.add(reservierung);
         }
-        return reservierung;
+        return  result;
     }
 }
