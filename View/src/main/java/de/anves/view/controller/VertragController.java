@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 
 @Controller
-public class VertragSuchenAuswaehlenController {
+public class VertragController {
 
 
     @GetMapping("/VertragAuswaehlen")
