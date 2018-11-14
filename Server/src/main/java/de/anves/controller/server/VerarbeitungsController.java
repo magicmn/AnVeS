@@ -6,8 +6,13 @@ import java.io.ObjectOutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
+import de.anves.Anhaenger;
+import de.anves.Reservierung;
+import de.anves.controller.dao.AnhaengerDAO;
 import de.anves.model.transfer.TransferObject;
 
 public class VerarbeitungsController extends Thread {
@@ -79,7 +84,18 @@ public class VerarbeitungsController extends Thread {
 	//	outStream.flush();
 	}
 		
+	public void getREADLISTReservierung(TransferObject obj)throws IOException{
+		List<Anhaenger> anhaengerList = new ArrayList<Anhaenger>();
+		AnhaengerDAO anhaengerdao = new AnhaengerDAO();
 
+		Reservierung reservierung = (Reservierung) obj.getObject();
+		anhaengerList = anhaengerdao.readList(reservierung.getVertragBeginn(), reservierung.getVertragsEnde(),
+				reservierung.getAnhaenger().getAnhaengerTyp());
+
+		outStream.writeObject(anhaengerList);
+		outStream.flush();
+
+	}
  
  
  
