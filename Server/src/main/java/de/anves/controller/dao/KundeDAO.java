@@ -2,6 +2,8 @@ package de.anves.controller.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,22 +14,38 @@ import de.anves.controller.db.DBController;
 public class KundeDAO implements CRUDInterface<Kunde>{
 
 	DBController db = DBController.getInstance();
-	
+
+	Date date;
 	@Override
 	public Kunde create(Kunde value) {
 		List<Kunde> result;
-		String createsql = "INSERT INTO kunde(nachname, vorname, Geburtsdatum, Bankverbindung, Plz, Ort, Strasse, Hausnummer) VALUES ("
+
+
+
+
+		String pattern = "dd-MM-yyyy";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		try{
+			date = simpleDateFormat.parse(value.getGeburtsdatum());
+			System.out.println(date);
+
+		}catch(ParseException e){
+			e.printStackTrace();
+		}
+
+
+		String createsql = "INSERT INTO kunde(kundeid, nachname, vorname, Gebdat, Bankverbindung, PLZ, ort, Strasse, Hausnummer) VALUES ("
 				+ "'"+ value.getId()+ "',"
 					+ "'"+ value.getNachname()+ "',"
 						+ "'"+ value.getVorname()+ "',"
-							+ "'"+ value.getGeburtsdatum().getTime()+ "',"
+							+ "'"+ date.getTime()+ "',"
 								+ "'"+ value.getBankverbindung()+ "',"
 									+ "'"+ value.getPlz()+ "',"
 										+ "'"+ value.getOrt()+ "',"
 											+ "'"+ value.getStrasse()+ "',"						
 				+ ""+ value.getHausnummer() +")";
 		
-		String selectsql = "SELECT * FROM user WHERE id = max(id)";
+		String selectsql = "SELECT * FROM user WHERE kundeid = max(kundeid)";
 		
 		db.connect();
 		try {
@@ -38,7 +56,7 @@ public class KundeDAO implements CRUDInterface<Kunde>{
 			
 			return result.get(0);
 		} catch (SQLException e) {
-			System.err.println("UserDao: CreatUser: Fehler");
+			System.err.println("Kunde: CreateKunde: Fehler");
 			e.printStackTrace();
 		} finally {
 			try {
@@ -52,7 +70,7 @@ public class KundeDAO implements CRUDInterface<Kunde>{
 
 	@Override
 	public Kunde read(long id) {
-	String readsql = "SELECT * FROM kunde WHERE id = '" + id + "'";
+	String readsql = "SELECT * FROM kunde WHERE kundeid = '" + id + "'";
 		
 		db.connect();
 		try {
@@ -82,7 +100,7 @@ public class KundeDAO implements CRUDInterface<Kunde>{
 				
 				+ "nachname="+ value.getNachname()+ "',"
 					+ "Vorname="+ value.getVorname()+ "',"
-						+ "Geburtsdatum="+ value.getGeburtsdatum().getTime()+ "',"
+						+ "Gebdat="+ date.getTime()+ "',"
 							+ "Bankverbindung="+ value.getBankverbindung()+ "',"
 								+ "Plz="+ value.getPlz()+ "',"
 									+ "Ort="+ value.getOrt()+ "',"
@@ -90,7 +108,7 @@ public class KundeDAO implements CRUDInterface<Kunde>{
 											
 			+ "Hausnummer="+ value.getHausnummer() +")";
 		
-		String selectsql = "SELECT * FROM kunde WHERE id = " + value.getId();
+		String selectsql = "SELECT * FROM kunde WHERE kundeid = " + value.getId();
 		
 		db.connect();
 		try {
@@ -115,7 +133,7 @@ public class KundeDAO implements CRUDInterface<Kunde>{
 
 	@Override
 	public boolean delete(Kunde value) {
-       String deletesql = "DELETE FROM kunde WHERE id=" + value.getId();
+       String deletesql = "DELETE FROM kunde WHERE kundeid=" + value.getId();
 		
 		db.connect();
 		try {
@@ -143,10 +161,10 @@ public class KundeDAO implements CRUDInterface<Kunde>{
 		
 		while(rs.next()) {
 			Kunde kunde = new Kunde();
-			kunde.setId(rs.getLong("id"));
+			kunde.setId(rs.getLong("kundeid"));
 			kunde.setNachname(rs.getString("nachname"));
 			kunde.setVorname(rs.getString("vorname"));
-			kunde.setGeburtsdatum( new Date(rs.getLong("geburtsdatum")) );
+			kunde.setGeburtsdatum( Long.toString(rs.getLong("Gebdat")) );
 			kunde.setBankverbindung(rs.getString("Bankverbindung"));
 			kunde.setPlz(rs.getString("Plz"));
 			kunde.setOrt(rs.getString("Ort"));

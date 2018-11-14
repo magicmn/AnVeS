@@ -1,17 +1,27 @@
 package de.anves;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import static java.util.Calendar.DATE;
 
 public class Kunde extends DBManaged{
     private long id;
     private String vorname;
     private String nachname;
-    private Date geburtsdatum;
+
+
+    private String geburtsdatum;
     private String bankverbindung;
     private String ort;
     private String strasse;
     private String plz;
     private String hausnummer;
+
+
+
+
 
     //Getter and Setter----------------------------------
     public long getId() {
@@ -35,13 +45,27 @@ public class Kunde extends DBManaged{
         this.nachname = nachname;
         return this;
     }
-    public Date getGeburtsdatum() {
+    public String getGeburtsdatum() {
         return geburtsdatum;
     }
-    public Kunde setGeburtsdatum(Date geburtsdatum) {
+    public Kunde setGeburtsdatum(String geburtsdatum) {
         this.geburtsdatum = geburtsdatum;
         return this;
     }
+    /*public Kunde setGeburtsdatum(String geburtsdatum) {
+        String pattern = "dd-MM-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        try{
+            Date date = simpleDateFormat.parse(geburtsdatum);
+            this.geburtsdatum = date;
+            System.out.println(date);
+            return this;
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        return this;
+    }*/
+
     public String getBankverbindung() {
         return bankverbindung;
     }

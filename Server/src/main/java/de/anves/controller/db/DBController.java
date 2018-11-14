@@ -26,7 +26,7 @@ public class DBController {
 	//--------------------------------------------------------------
 	
 	private static final String URL = "jdbc:mysql://172.25.13.231/anves";
-	private static final String USER = "root";
+	private static final String USER = "test";
 	private static final String PASSWORT = "";
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 	private Connection connection;
