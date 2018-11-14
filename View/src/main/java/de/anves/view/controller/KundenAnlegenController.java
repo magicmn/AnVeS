@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class KundenAnlegenController {
 
     @GetMapping("/KundeAnlegen")
-    public String kundenAnlegenForm(Model model) {
-        //model.addAttribute("KundeAnlegen", new Kunde());
-        return "KundeAnlegen";
+    public void kundenAnlegenForm(Model model) {
+        model.addAttribute("Kunde", new Kunde());
+     //   return "Kunde";
     }
 
 
