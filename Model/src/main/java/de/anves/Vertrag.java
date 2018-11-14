@@ -7,11 +7,10 @@ public class Vertrag extends DBManaged{
     private long id;
     private Reservierung reservierung;
     private Tarif tarif;
-    private Date uebergabe;
-    private Date rueckgabe;
+    private Uebergabe uebergabe;
+    private Rueckgabe rueckgabe;
     private Schadensbericht schadensbericht;
-    private Mitarbeiter uebergabeMitarbeiter;
-    private Mitarbeiter rueckgabeMitarbeiter;
+
 
     //Getter and Setter--------------------------------------
     public long getId() {
@@ -35,17 +34,17 @@ public class Vertrag extends DBManaged{
         this.tarif = tarif;
         return this;
     }
-    public Date getUebergabe() {
+    public Uebergabe getUebergabe() {
         return uebergabe;
     }
-    public Vertrag setUebergabe(Date uebergabe) {
+    public Vertrag setUebergabe(Uebergabe uebergabe) {
         this.uebergabe = uebergabe;
         return this;
     }
-    public Date getRueckgabe() {
+    public Rueckgabe getRueckgabe() {
         return rueckgabe;
     }
-    public Vertrag setRueckgabe(Date rueckgabe) {
+    public Vertrag setRueckgabe(Rueckgabe rueckgabe) {
         this.rueckgabe = rueckgabe;
         return this;
     }
@@ -56,18 +55,5 @@ public class Vertrag extends DBManaged{
         this.schadensbericht = schadensbericht;
         return this;
     }
-    public Mitarbeiter getUebergabeMitarbeiter() {
-        return uebergabeMitarbeiter;
-    }
-    public Vertrag setUebergabeMitarbeiter(Mitarbeiter uebergabeMitarbeiter) {
-        this.uebergabeMitarbeiter = uebergabeMitarbeiter;
-        return this;
-    }
-    public Mitarbeiter getRueckgabeMitarbeiter() {
-        return rueckgabeMitarbeiter;
-    }
-    public Vertrag setRueckgabeMitarbeiter(Mitarbeiter rueckgabeMitarbeiter) {
-        this.rueckgabeMitarbeiter = rueckgabeMitarbeiter;
-        return this;
-    }
+
 }
