@@ -21,7 +21,7 @@ public class AnhaengerSuchen {
     }
 
     @PostMapping("/AnhaengerSuchen")
-    public String anhaengerSuchenSubmit(@ModelAttribute List<Anhaenger> anhaengerList) {
+    public String anhaengerSuchenSubmit(@ModelAttribute("anhaengerSuchenForm") List<Anhaenger> anhaengerList) {
         anhaengerList = new ArrayList<>();
         return "VerfuegbareAnhaenger";
     }
