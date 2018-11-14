@@ -1,0 +1,157 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="AnVeS - Anhänger suchen">
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap-v4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/fontawesome-free-v5.5.0-web/css/solid.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<header>
+    <div>
+        <h1>AnVeS</h1>
+    </div>
+</header>
+<nav>
+    <ol class="breadcrumb dark-bg">
+        <li class="breadcrumb-item">Anhänger suchen</li>
+        <li class="breadcrumb-item">Verfügbare Anhänger</li>
+        <li class="breadcrumb-item">Tarif wählen</li>
+        <li class="breadcrumb-item">Kunden suchen</li>
+        <li class="breadcrumb-item">Kunde auswählen</li>
+        <li class="breadcrumb-item">Kunde anlegen</li>
+        <li class="breadcrumb-item">Vertrag suchen</li>
+        <li class="breadcrumb-item">Vertrag auswählen</li>
+        <li class="breadcrumb-item active">Status ändern</li>
+    </ol>
+</nav>
+
+<section class="container-fluid col-sm-9">
+    <form>
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <div class="form-group row">
+                    <label for="vertragsnummer" class="col-sm-3 col-form-label">Vertragsnummer</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" id="vertragsnummer" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="kundenummer" class="col-sm-3 col-form-label">Kundennummer</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" id="kundenummer" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="mietzeitraumVon" class="col-sm-3 col-form-label">Mietzeitraum von</label>
+                    <div class="row col">
+                        <div class="col-sm-5">
+                            <input type="date" class="form-control" id="mietzeitraumVon" disabled>
+                        </div>
+                        <div class="centered">
+                            <label for="mietzeitraumBis" class="col-form-label centered"> bis </label>
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="date" class="form-control" id="mietzeitraumBis" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group row">
+                    <label for="kennzeichen" class="col-sm-3 col-form-label">Kennzeichen</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="kennzeichen" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="anhaengerTyp" class="col-sm-3 col-form-label">Anhängertyp</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="anhaengerTyp" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="naechsteHU" class="col-sm-3 col-form-label">Nächste HU</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="naechsteHU" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="tarifnummer" class="col-sm-3 col-form-label">Tarif</label>
+                    <div class="col-sm-9">
+                        <div class="input-group">
+                            <input type="text" class="form-control col-sm-2" id="tarifnummer" disabled>
+                            <input type="text" class="form-control" id="tarifbezeichnung" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="tagespreisEur" class="col-sm-3 col-form-label">Tagespreis in €</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="tagespreisEur" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="gesamtpreisEur" class="col-sm-3 col-form-label">Gesamtpreis in €</label>
+                    <div class="row col">
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="gesamtpreisEur" disabled>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="enthalteneMwst" class="col-form-label">Enthaltene Mwst.</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="enthalteneMwst" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row border-top" style="padding-top: 10px">
+            <div class="col-sm-6">
+                <div class="form-group row">
+                    <label for="uebergabeDate" class="col-sm-3 col-form-label">Übergabe</label>
+                    <div class="row col">
+                        <div class="col input-group">
+                            <input type="date" class="form-control" id="uebergabeDate">
+                            <input type="time" class="form-control" id="uebergabeTime">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="rueckgabeDate" class="col-sm-3 col-form-label">Rückgabe</label>
+                    <div class="row col">
+                        <div class="col input-group">
+                            <input type="date" class="form-control" id="rueckgabeDate">
+                            <input type="time" class="form-control" id="rueckgabeTime">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="schadensbericht">Schadensbericht</label>
+                    <textarea class="form-control" id="schadensbericht" rows="2"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row bottom">
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-primary btn-block">Übergabe buchen</button>
+            </div>
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-primary btn-block">Rückgabe buchen</button>
+            </div>
+            <div class="col-sm-4">
+                <button type="reset" class="btn btn-danger btn-block">Zurücksetzen</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+<footer>
+</footer>
+</body>
+</html>

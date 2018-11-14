@@ -16,7 +16,7 @@ public class KundeDAO implements CRUDInterface<Kunde>{
 	@Override
 	public Kunde create(Kunde value) {
 		List<Kunde> result;
-		String createsql = "INSERT INTO kunde(nachname, vorname, Geburtsdatum, Bankverbindun, Plz, Ort, Strasse, Hausnummer) VALUES ("
+		String createsql = "INSERT INTO kunde(nachname, vorname, Geburtsdatum, Bankverbindung, Plz, Ort, Strasse, Hausnummer) VALUES ("
 				+ "'"+ value.getId()+ "',"
 					+ "'"+ value.getNachname()+ "',"
 						+ "'"+ value.getVorname()+ "',"
