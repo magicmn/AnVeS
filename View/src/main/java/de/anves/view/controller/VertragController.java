@@ -43,14 +43,14 @@ public class VertragController {
     public String getVertragSuchen(Model model) {
         model.addAttribute("suchform",new Suchform());
 
-        return "suchform";
-    }
-    @GetMapping("/VertragSuchen")
-    public String postVertragSuchen(@ModelAttribute Suchform form, Model model) {
-        model.addAttribute("suchform",form);
-
         return "VertragSuchen";
     }
+//    @GetMapping("/VertragSuchen")
+//    public String postVertragSuchen(@ModelAttribute Suchform form, Model model) {
+//        model.addAttribute("suchform",form);
+//
+//        return "VertragSuchen";
+//    }
     public class Suchform
     {
         private long vertragID;
