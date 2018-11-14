@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -8,9 +8,9 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <script type="text/javascript" src="lib/jQuery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="lib/bootstrap-v4.1.3/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="VerfuegbareAnhaenger.js"></script>
+<script type="text/javascript" src="lib/jQuery-3.3.1.min.js"></script>
+<script type="text/javascript" src="lib/bootstrap-v4.1.3/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="VerfuegbareAnhaenger.js"></script>
 <header>
     <div>
         <h1>AnVeS</h1>
@@ -31,33 +31,44 @@
 </nav>
 
 <section class="container-fluid col-sm-9">
-<form>
-    <div class="form-group row">
-        <div class="col-sm-6">
-            <table class="table table-hover">
-                <thead class="thead-light">
+    <form>
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <table class="table table-hover">
+                    <thead class="thead-light">
                     <tr>
                         <th scope="col"></th>
                         <th scope="col">Kennzeichen</th>
                         <th scope="col">Anhängertyp</th>
                         <th scope="col">Nächste HU</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     <tr>
                         <th scope="row">
                             <label class="form-check noplaceholder">
-                                <input class="form-check-input position-static" type="radio" id="row1" name="anhängerAuswahl" onclick="toggleCollapse('#collapsePlatzhaltzer1');">
+                                <input class="form-check-input position-static" type="radio" id="row1"
+                                       name="anhängerAuswahl" onclick="toggleCollapse('#collapsePlatzhaltzer1');">
                             </label>
                         </th>
-                        <td><label class="noplaceholder fillSpace" for="row1">Platzhalter1a</label></td>
-                        <td><label class="noplaceholder fillSpace" for="row1">Platzhalter1b</label></td>
-                        <td><label class="noplaceholder fillSpace" for="row1">Platzhalter1c</label></td>
+
+                        <th:block th:each="anhaenger : ${anhaengerListe}">
+                    <tr>
+                        <td th:text="${anhaenger.id}"><label class="noplaceholder fillSpace" for="row1">...</label></td>
+                        <td th:text="${anhaenger.zeitraumVon}"><label class="noplaceholder fillSpace" for="row1">...</label></td>
+                        <td th:text="${anhaenger.zeitraumBis}"><label class="noplaceholder fillSpace" for="row1">...</label></td>
+                    </tr>
+                    </th:block>
+
+                    <td><label class="noplaceholder fillSpace" for="row1">Platzhalter1a</label></td>
+                    <td><label class="noplaceholder fillSpace" for="row1">Platzhalter1b</label></td>
+                    <td><label class="noplaceholder fillSpace" for="row1">Platzhalter1c</label></td>
                     </tr>
                     <tr>
                         <th scope="row">
                             <label class="form-check noplaceholder">
-                                <input class="form-check-input position-static" type="radio" id="row2" name="anhängerAuswahl" onclick="toggleCollapse('#collapsePlatzhaltzer2');">
+                                <input class="form-check-input position-static" type="radio" id="row2"
+                                       name="anhängerAuswahl" onclick="toggleCollapse('#collapsePlatzhaltzer2');">
                             </label>
                         </th>
                         <td><label class="noplaceholder fillSpace" for="row2">Platzhalter2a</label></td>
@@ -67,67 +78,70 @@
                     <tr>
                         <th scope="row">
                             <label class="form-check noplaceholder">
-                                <input class="form-check-input position-static" type="radio" id="row3" name="anhängerAuswahl" onclick="toggleCollapse('#collapsePlatzhaltzer3');">
+                                <input class="form-check-input position-static" type="radio" id="row3"
+                                       name="anhängerAuswahl" onclick="toggleCollapse('#collapsePlatzhaltzer3');">
                             </label>
                         </th>
                         <td><label class="noplaceholder fillSpace" for="row3">Platzhalter3a</label></td>
                         <td><label class="noplaceholder fillSpace" for="row3">Platzhalter3b</label></td>
                         <td><label class="noplaceholder fillSpace" for="row3">Platzhalter3c</label></td>
                     </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-sm-6">
-            <div class="collapse" id="collapsePlatzhaltzer1">
-                <div class="card">
-                    <div class="card-header">
-                        Schadensbericht
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-6">
+                <div class="collapse" id="collapsePlatzhaltzer1">
+                    <div class="card">
+                        <div class="card-header">
+                            Schadensbericht
+                        </div>
+                        <div class="card-body">
+                            Text für Platzhalter1
+                        </div>
                     </div>
-                    <div class="card-body">
-                        Text für Platzhalter1
+                </div>
+                <div class="collapse" id="collapsePlatzhaltzer2">
+                    <div class="card">
+                        <div class="card-header">
+                            Schadensbericht
+                        </div>
+                        <div class="card-body">
+                            Text für Platzhalter2 mit
+                            seeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+                            langer Text
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="collapsePlatzhaltzer3">
+                    <div class="card">
+                        <div class="card-header">
+                            Schadensbericht
+                        </div>
+                        <div class="card-body">
+                            Text für Platzhalter3<br/>
+                            über mehere<br/>
+                            Zeilen<br/>
+                            sehr<br/>
+                            viel<br/>
+                            Zeilen<br/>
+                            und <br/>
+                            noch<br/>
+                            mehr<br/>
+                            Zeilen<br/>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="collapse" id="collapsePlatzhaltzer2">
-                <div class="card">
-                    <div class="card-header">
-                        Schadensbericht
-                    </div>
-                    <div class="card-body">
-                        Text für Platzhalter2 mit seeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr langer Text
-                    </div>
-                </div>
+        </div>
+        <div class="form-group row bottom">
+            <div class="col-sm-6">
+                <button type="submit" class="btn btn-primary btn-block">Anhänger wählen</button>
             </div>
-            <div class="collapse" id="collapsePlatzhaltzer3">
-                <div class="card">
-                    <div class="card-header">
-                        Schadensbericht
-                    </div>
-                    <div class="card-body">
-                        Text für Platzhalter3<br/>
-                        über mehere<br/>
-                        Zeilen<br/>
-                        sehr<br/>
-                        viel<br/>
-                        Zeilen<br/>
-                        und <br/>
-                        noch<br/>
-                        mehr<br/>
-                        Zeilen<br/>
-                    </div>
-                </div>
+            <div class="col-sm-6">
+                <button type="reset" class="btn btn-danger btn-block">Abbrechen</button>
             </div>
         </div>
-    </div>
-    <div class="form-group row bottom">
-        <div class="col-sm-6">
-            <button type="submit" class="btn btn-primary btn-block">Anhänger wählen</button>
-        </div>
-        <div class="col-sm-6">
-            <button type="reset" class="btn btn-danger btn-block">Abbrechen</button>
-        </div>
-    </div>
-</form>
+    </form>
 </section>
 
 <footer>
