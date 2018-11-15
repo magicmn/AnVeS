@@ -85,7 +85,7 @@ public class TarifDAO implements CRUDInterface<Tarif> {
 
     /**
      * Updaten eines Tarifs <p>
-     * @param value Objekt des Typs Tarif
+     * @param value Objekt des Typs Tarifw
      * @return Updated Objekt des Typs Tarif
      */
     @Override

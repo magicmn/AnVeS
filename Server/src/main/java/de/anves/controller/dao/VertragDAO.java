@@ -31,6 +31,7 @@ public class VertragDAO implements CRUDInterface<Vertrag> {
      *
      * @return der erstellte Vertrag
      * @author Leon
+     * Test by Chris
      * @version 1.0
      */
     @Override
