@@ -13,7 +13,7 @@ public class RueckgabeDAO implements CRUDInterface<Rueckgabe> {
     private DBController db = DBController.getInstance();
     private Rueckgabe rueckgabe = new Rueckgabe();
     private MitarbeiterDAO mitarbeiterDAO = new MitarbeiterDAO();
-    private VertragDAO vertragdao = new VertragDAO();
+
 
     @Override
     public Rueckgabe create(Rueckgabe value) {

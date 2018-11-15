@@ -15,7 +15,7 @@ public class UebergabeDAO implements CRUDInterface<Uebergabe> {
     private DBController db = DBController.getInstance();
     private Uebergabe uebergabe = new Uebergabe();
     private MitarbeiterDAO mitarbeiterDAO = new MitarbeiterDAO();
-    private VertragDAO vertragdao = new VertragDAO();
+
 
     @Override
     public Uebergabe create(Uebergabe value) {
