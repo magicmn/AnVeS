@@ -1,16 +1,16 @@
 package de.anves;
 
-public enum AnhaengerTypEnum {
+public enum AnhaengerTyp {
     EINACHSER(1), TANDEMACHSER(2), KOFFERANHAENGER(3), MOTORRADANHAENGER(4);
 
     public final long id;
 
-    AnhaengerTypEnum(long id) {
+    AnhaengerTyp(long id) {
         this.id = id;
     }
 
-    public static AnhaengerTypEnum getById(long id) {
-        for (AnhaengerTypEnum i : AnhaengerTypEnum.values()) {
+    public static AnhaengerTyp getById(long id) {
+        for (AnhaengerTyp i : AnhaengerTyp.values()) {
             if (i.id == id) {
                 return i;
             }

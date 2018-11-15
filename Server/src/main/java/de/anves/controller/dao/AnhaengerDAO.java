@@ -2,7 +2,7 @@
 package de.anves.controller.dao;
 
 import de.anves.Anhaenger;
-import de.anves.AnhaengerTypEnum;
+import de.anves.AnhaengerTyp;
 import de.anves.controller.db.DBController;
 
 import java.sql.ResultSet;
@@ -145,7 +145,7 @@ public class AnhaengerDAO implements CRUDInterface<Anhaenger> {
      * @return Liste verfügbarer Anhänger
      */
 
-    public List<Anhaenger> readList(Date start, Date end, AnhaengerTypEnum anhaengerTyp) {
+    public List<Anhaenger> readList(Date start, Date end, AnhaengerTyp anhaengerTyp) {
         List<Anhaenger> result = new ArrayList<>();
         String partOfSelectSQL = " ";
         if (anhaengerTyp != null) {
@@ -179,7 +179,7 @@ public class AnhaengerDAO implements CRUDInterface<Anhaenger> {
         while (rs.next()) {
             Anhaenger anhaenger = new Anhaenger();
             //Enum zum INT konvertieren
-            anhaenger.setAnhaengerTyp(AnhaengerTypEnum.getById(rs.getInt("AnhängerTYP")));
+            anhaenger.setAnhaengerTyp(AnhaengerTyp.getById(rs.getInt("AnhängerTYP")));
             anhaenger.setId(rs.getLong("AnhängerID"));
             anhaenger.setKennzeichen(rs.getString("Kennzeichen"));
             anhaenger.setNaechsteHU(new Date(rs.getLong("nächsteHU")));
@@ -187,10 +187,6 @@ public class AnhaengerDAO implements CRUDInterface<Anhaenger> {
         }
 
         return result;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new AnhaengerDAO().readList(new Date(0), new Date(1), null));
     }
 
 }

@@ -7,7 +7,7 @@ import java.util.List;
 public class Anhaenger extends DBManaged {
 
     private long id;
-    private AnhaengerTypEnum anhaengerTyp;
+    private AnhaengerTyp anhaengerTyp;
     private String kennzeichen;
     private Date naechsteHU;
     private List<Schadensbericht> schadensBerichte;
@@ -21,7 +21,7 @@ public class Anhaenger extends DBManaged {
     /**
      * Konstruktor der erzwingt alle Felder zu setzen um Fehler zu vermeiden.
      */
-    public Anhaenger(long id, AnhaengerTypEnum anhaengerTyp, String kennzeichen, Date naechsteHU, List<Schadensbericht> schadensBerichte) {
+    public Anhaenger(long id, AnhaengerTyp anhaengerTyp, String kennzeichen, Date naechsteHU, List<Schadensbericht> schadensBerichte) {
         this.id = id;
         this.anhaengerTyp = anhaengerTyp;
         this.kennzeichen = kennzeichen;
@@ -38,11 +38,11 @@ public class Anhaenger extends DBManaged {
         return this;
     }
 
-    public AnhaengerTypEnum getAnhaengerTyp() {
+    public AnhaengerTyp getAnhaengerTyp() {
         return anhaengerTyp;
     }
 
-    public Anhaenger setAnhaengerTyp(AnhaengerTypEnum anhaengerTyp) {
+    public Anhaenger setAnhaengerTyp(AnhaengerTyp anhaengerTyp) {
         this.anhaengerTyp = anhaengerTyp;
         return this;
     }
