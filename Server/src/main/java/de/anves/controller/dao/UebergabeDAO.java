@@ -95,7 +95,7 @@ public class UebergabeDAO implements CRUDInterface<Uebergabe> {
             uebergabe = new Uebergabe();
             uebergabe.setDatum(new Date(rs.getLong("datum")));
             uebergabe.setMitarbeiter(mitarbeiterDAO.read(rs.getLong("mitarbeiterid")));
-            uebergabe.setVertragid(vertragdao.read(rs.getLong("vertragsid")).getId());
+            uebergabe.setVertragid(rs.getLong("vertragsid"));
 
         }
         return uebergabe;
