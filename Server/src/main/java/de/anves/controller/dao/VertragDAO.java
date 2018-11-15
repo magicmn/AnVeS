@@ -3,7 +3,6 @@ package de.anves.controller.dao;
 import de.anves.*;
 import de.anves.controller.db.DBController;
 
-import java.util.Date;
 import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,8 +48,6 @@ public class VertragDAO implements CRUDInterface<Vertrag> {
         }
         return result.get(0);
     }
-
-
 
     /**
      * Liest die Datenbankeinträge aus den Tabellen Vertrag, Rückgabe und übergabe anhand der übergebenen ID aus
