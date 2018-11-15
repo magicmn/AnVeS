@@ -1,20 +1,19 @@
-package de.anves.view;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+package de.anves.view.controller;
 
 import de.anves.Anhaenger;
-
 import de.anves.AnhaengerTypEnum;
 import de.anves.Kunde;
 import de.anves.Reservierung;
 import de.anves.model.transfer.TransferAction;
 import de.anves.model.transfer.TransferObject;
 
-
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class ClientController {
 

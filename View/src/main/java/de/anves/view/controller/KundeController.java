@@ -17,6 +17,12 @@ import javax.validation.Valid;
  */
 public class KundeController {
 
+    /**
+     * Get Mapping für KundeSuchen
+     *  fügt das attribut Kunde hinzu, um eingaben später in ihm speichern zu können
+     * @param model
+     * @return
+     */
     @GetMapping("/KundenSuchen")
     public String kundenSuchen(Model model) {
         model.addAttribute("kunde", new Kunde());

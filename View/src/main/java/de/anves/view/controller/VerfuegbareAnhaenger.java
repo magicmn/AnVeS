@@ -3,8 +3,6 @@ package de.anves.view.controller;
 import de.anves.Anhaenger;
 import de.anves.AnhaengerTypEnum;
 import de.anves.Schadensbericht;
-import de.anves.view.ClientController;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Controller
+//@Controller
 @RequestMapping(value = "/VerfuegbareAnhaenger")
 public class VerfuegbareAnhaenger {
 
