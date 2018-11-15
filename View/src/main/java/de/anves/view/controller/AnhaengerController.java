@@ -1,5 +1,6 @@
 package de.anves.view.controller;
 
+import de.anves.Anhaenger;
 import de.anves.AnhaengerTyp;
 import de.anves.controller.dao.AnhaengerDAO;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ public class AnhaengerController {
     @PostMapping("/VerfuegbareAnhaenger")
     public String submitAnhaengerSuchen(@ModelAttribute AnhaengerSuchenForm anhaengerSuchenForm, Model model) {
         model.addAttribute("anhaengerList", new AnhaengerDAO().readList(new Date(0), new Date(1), null));
+        model.addAttribute("VerfuegbareAnhaengerForm", new VerfuegbareAnhaengerForm());
         return "VerfuegbareAnhaenger";
     }
 
@@ -30,7 +32,7 @@ public class AnhaengerController {
 
         private String anhaengerTyp;
         private String zeitraumVon;
-        private String zeitraumAb;
+        private String zeitraumBis;
         private int tage;
 
         public String getAnhaengerTyp() {
@@ -49,12 +51,12 @@ public class AnhaengerController {
             this.zeitraumVon = zeitraumVon;
         }
 
-        public String getZeitraumAb() {
-            return zeitraumAb;
+        public String getZeitraumBis() {
+            return zeitraumBis;
         }
 
-        public void setZeitraumAb(String zeitraumAb) {
-            this.zeitraumAb = zeitraumAb;
+        public void setZeitraumBis(String zeitraumBis) {
+            this.zeitraumBis = zeitraumBis;
         }
 
         public int getTage() {
@@ -63,6 +65,18 @@ public class AnhaengerController {
 
         public void setTage(int tage) {
             this.tage = tage;
+        }
+    }
+
+    public class VerfuegbareAnhaengerForm {
+        private Anhaenger anhaenger;
+
+        public Anhaenger getAnhaenger() {
+            return anhaenger;
+        }
+
+        public void setAnhaenger(Anhaenger anhaenger) {
+            this.anhaenger = anhaenger;
         }
     }
 

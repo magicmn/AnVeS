@@ -31,7 +31,7 @@
 </nav>
 
 <section class="container-fluid col-sm-9">
-    <form>
+    <form action="#" th:action="@{/TarifWaehlen}" th:object="${VerfuegbareAnhaengerForm}" method="post">
         <div class="form-group row">
             <div class="col-sm-6">
                 <table class="table table-hover">
@@ -47,14 +47,16 @@
                     <tr th:each="i : ${anhaengerList}">
                         <td scope="row">
                             <label class="form-check noplaceholder">
-                                <input class="form-check-input position-static" type="radio" id="row1"
-                                       name="anhängerAuswahl" th:onclick="'toggleCollapse(\'#' + ${i.id} + '\');'">
+                                <input class="form-check-input position-static" type="radio" th:field="*{anhaenger}"
+                                       th:id="'anhaenger' + ${i.id}" th:value="${i}"
+                                       th:onclick="'toggleCollapse(\'#' + ${i.id} + '\');'">
                             </label>
                         </td>
-                        <td><label class="noplaceholder fillSpace" for="row1" th:text="${i.kennzeichen}"></label></td>
-                        <td><label class="noplaceholder fillSpace" for="row1"
+                        <td><label class="noplaceholder fillSpace" th:for="'anhaenger' + ${i.id}"
+                                   th:text="${i.kennzeichen}"></label></td>
+                        <td><label class="noplaceholder fillSpace" th:for="'anhaenger' + ${i.id}"
                                    th:text="${#strings.capitalize(#strings.toLowerCase(i.anhaengerTyp))}"></label></td>
-                        <td><label class="noplaceholder fillSpace" for="row1"
+                        <td><label class="noplaceholder fillSpace" th:for="'anhaenger' + ${i.id}"
                                    th:text="${#dates.format(i.naechsteHU, 'dd.MM.yyyy')}"></label></td>
                     </tr>
                     </tbody>
@@ -64,9 +66,9 @@
                 <div th:each="i : ${anhaengerList}" class="collapse" th:id="${i.id}">
                     <div class="card">
                         <div class="card-header">
-                            Schadensbericht für Anhänger <span th:text="${i.id}"></span>
+                            Schadensberichte für Anhänger <span th:text="${i.id}"></span>
                         </div>
-                        <div class="card-body" th:text="${SchadensBerichteString}"></div>
+                        <div class="card-body" th:text="${#strings. i.SchadensBerichteString}"></div>
                     </div>
                 </div>
             </div>

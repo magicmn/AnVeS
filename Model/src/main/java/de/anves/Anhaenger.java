@@ -75,11 +75,15 @@ public class Anhaenger extends DBManaged {
     }
 
     public String getSchadensBerichteString() {
-        StringBuilder sb = new StringBuilder();
-        SimpleDateFormat sdt = new SimpleDateFormat("dd.MM.yyyy");
-        for (Schadensbericht schadensBericht : schadensBerichte) {
-            sb.append("Am ").append(sdt.format(schadensBericht.getDatum())).append(schadensBericht.getBeschreibung());
+        if (schadensBerichte == null || schadensBerichte.isEmpty()) {
+            return "Keine";
+        } else {
+            StringBuilder sb = new StringBuilder();
+            SimpleDateFormat sdt = new SimpleDateFormat("dd.MM.yyyy");
+            for (Schadensbericht schadensBericht : schadensBerichte) {
+                sb.append("Am ").append(sdt.format(schadensBericht.getDatum())).append(schadensBericht.getBeschreibung()).append("\n");
+            }
+            return sb.toString();
         }
-        return sb.toString();
     }
 }
