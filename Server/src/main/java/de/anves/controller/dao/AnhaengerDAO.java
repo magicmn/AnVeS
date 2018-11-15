@@ -54,18 +54,13 @@ public class AnhaengerDAO implements CRUDInterface<Anhaenger> {
 
     @Override
     public Anhaenger read(long id) {
-        ArrayList<Anhaenger> result;
-        String selectsql = "SELECT * FROM anhänger WHERE AnhängerID = " + id;
+        List<Anhaenger> result = null;
+        String selectsql = "SELECT * FROM anhänger WHERE AnhängerID=" + id;
         db.connect();
         try {
             ResultSet rs = db.executeQuery(selectsql);
-
             result = convertRStoAnhaenger(rs);
-            if (!result.isEmpty()) {
-                return result.get(0);
-            }
         } catch (SQLException e) {
-            System.out.println(e.toString());
             e.printStackTrace();
         } finally {
             try {
@@ -74,9 +69,9 @@ public class AnhaengerDAO implements CRUDInterface<Anhaenger> {
                 System.out.println(e + " in line " + this.getClass().getSimpleName());
                 e.printStackTrace();
             }
-
         }
-        return null;
+        System.out.println(result.get(0));
+        return result.isEmpty() ? null : result.get(0);
     }
 
     @Override
@@ -149,7 +144,7 @@ public class AnhaengerDAO implements CRUDInterface<Anhaenger> {
         List<Anhaenger> result = new ArrayList<>();
         String partOfSelectSQL = " ";
         if (anhaengerTyp != null) {
-            partOfSelectSQL = " anhängetyp=" + anhaengerTyp.ordinal() + " AND ";
+            partOfSelectSQL = " AnhängerTYP=" + anhaengerTyp.id + " AND ";
         }
         String selectsql = "SELECT * FROM anhänger WHERE" + partOfSelectSQL + "anhängerid NOT IN (SELECT anhängerid FROM `reservierung` WHERE von > " + start.getTime() + " AND bis < " + end.getTime() + ")";
         db.connect();
@@ -182,6 +177,7 @@ public class AnhaengerDAO implements CRUDInterface<Anhaenger> {
             anhaenger.setId(rs.getLong("AnhängerID"));
             anhaenger.setKennzeichen(rs.getString("Kennzeichen"));
             anhaenger.setNaechsteHU(new Date(rs.getLong("nächsteHU")));
+            anhaenger.setSchadensBerichte(new SchadensberichtDAO().readList(rs.getLong("AnhängerID")));
             result.add(anhaenger);
         }
 

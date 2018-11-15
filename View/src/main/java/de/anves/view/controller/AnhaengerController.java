@@ -3,6 +3,7 @@ package de.anves.view.controller;
 import de.anves.Anhaenger;
 import de.anves.AnhaengerTyp;
 import de.anves.controller.dao.AnhaengerDAO;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,48 +24,52 @@ public class AnhaengerController {
 
     @PostMapping("/VerfuegbareAnhaenger")
     public String submitAnhaengerSuchen(@ModelAttribute AnhaengerSuchenForm anhaengerSuchenForm, Model model) {
-        model.addAttribute("anhaengerList", new AnhaengerDAO().readList(new Date(0), new Date(1), null));
+        System.out.println(anhaengerSuchenForm);
+        System.out.println(new AnhaengerDAO().readList(anhaengerSuchenForm.zeitraumVon, anhaengerSuchenForm.zeitraumBis, anhaengerSuchenForm.anhaengerTyp));
+        model.addAttribute("anhaengerList", new AnhaengerDAO().readList(anhaengerSuchenForm.zeitraumVon, anhaengerSuchenForm.zeitraumBis, anhaengerSuchenForm.anhaengerTyp));
         model.addAttribute("VerfuegbareAnhaengerForm", new VerfuegbareAnhaengerForm());
         return "VerfuegbareAnhaenger";
     }
 
     public class AnhaengerSuchenForm {
 
-        private String anhaengerTyp;
-        private String zeitraumVon;
-        private String zeitraumBis;
-        private int tage;
+        private AnhaengerTyp anhaengerTyp;
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
+        private Date zeitraumVon;
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
+        private Date zeitraumBis;
 
-        public String getAnhaengerTyp() {
+        public AnhaengerTyp getAnhaengerTyp() {
             return anhaengerTyp;
         }
 
-        public void setAnhaengerTyp(String anhaengerTyp) {
+        public void setAnhaengerTyp(AnhaengerTyp anhaengerTyp) {
             this.anhaengerTyp = anhaengerTyp;
         }
 
-        public String getZeitraumVon() {
+        public Date getZeitraumVon() {
             return zeitraumVon;
         }
 
-        public void setZeitraumVon(String zeitraumVon) {
+        public void setZeitraumVon(Date zeitraumVon) {
             this.zeitraumVon = zeitraumVon;
         }
 
-        public String getZeitraumBis() {
+        public Date getZeitraumBis() {
             return zeitraumBis;
         }
 
-        public void setZeitraumBis(String zeitraumBis) {
+        public void setZeitraumBis(Date zeitraumBis) {
             this.zeitraumBis = zeitraumBis;
         }
 
-        public int getTage() {
-            return tage;
-        }
-
-        public void setTage(int tage) {
-            this.tage = tage;
+        @Override
+        public String toString() {
+            return "AnhaengerSuchenForm{" +
+                    "anhaengerTyp=" + anhaengerTyp +
+                    ", zeitraumVon=" + zeitraumVon +
+                    ", zeitraumBis=" + zeitraumBis +
+                    '}';
         }
     }
 

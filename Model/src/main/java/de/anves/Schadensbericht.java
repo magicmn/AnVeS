@@ -44,5 +44,4 @@ public class Schadensbericht extends DBManaged{
         this.anmerkungKunde = anmerkungKunde;
         return this;
     }
-
 }

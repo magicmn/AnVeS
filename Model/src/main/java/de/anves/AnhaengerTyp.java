@@ -17,4 +17,14 @@ public enum AnhaengerTyp {
         }
         return null;
     }
+
+    public static AnhaengerTyp getByString(String string) {
+        for (AnhaengerTyp i : AnhaengerTyp.values()) {
+            if (i.name().equalsIgnoreCase(string)) {
+                return i;
+            }
+        }
+        return null;
+    }
+
 }

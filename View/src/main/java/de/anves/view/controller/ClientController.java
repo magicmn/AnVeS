@@ -1,7 +1,7 @@
 package de.anves.view.controller;
 
 import de.anves.Anhaenger;
-import de.anves.AnhaengerTypEnum;
+import de.anves.AnhaengerTyp;
 import de.anves.Kunde;
 import de.anves.Reservierung;
 import de.anves.model.transfer.TransferAction;
@@ -32,7 +32,7 @@ public class ClientController {
     public ClientController(){}
 
 
-        public List<Anhaenger> sucheAnhaenger(AnhaengerTypEnum anhaengerTyp, Date anfang, Date ende){
+    public List<Anhaenger> sucheAnhaenger(AnhaengerTyp anhaengerTyp, Date anfang, Date ende) {
         Reservierung reservierung = new Reservierung();
 
         List<Anhaenger> anhaengerListe = new ArrayList<Anhaenger>();

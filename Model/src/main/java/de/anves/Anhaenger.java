@@ -1,6 +1,6 @@
 package de.anves;
 
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class Anhaenger extends DBManaged {
     private AnhaengerTyp anhaengerTyp;
     private String kennzeichen;
     private Date naechsteHU;
-    private List<Schadensbericht> schadensBerichte;
+    private List<Schadensbericht> schadensBerichte = new ArrayList<>();
 
     /**
      * Leerer Konstruktor = Daten nachträglich setzen.
@@ -72,18 +72,5 @@ public class Anhaenger extends DBManaged {
     public Anhaenger setSchadensBerichte(List<Schadensbericht> schadensBerichte) {
         this.schadensBerichte = schadensBerichte;
         return this;
-    }
-
-    public String getSchadensBerichteString() {
-        if (schadensBerichte == null || schadensBerichte.isEmpty()) {
-            return "Keine";
-        } else {
-            StringBuilder sb = new StringBuilder();
-            SimpleDateFormat sdt = new SimpleDateFormat("dd.MM.yyyy");
-            for (Schadensbericht schadensBericht : schadensBerichte) {
-                sb.append("Am ").append(sdt.format(schadensBericht.getDatum())).append(schadensBericht.getBeschreibung()).append("\n");
-            }
-            return sb.toString();
-        }
     }
 }
