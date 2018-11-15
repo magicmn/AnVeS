@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class VertragDAO implements CRUDInterface<Vertrag> {
+
+
     private DBController db = DBController.getInstance();
     private Vertrag vertrag = new Vertrag();
     private List<Vertrag> result = new ArrayList<Vertrag>();
@@ -18,6 +20,8 @@ public class VertragDAO implements CRUDInterface<Vertrag> {
     private UebergabeDAO uebergabeDAO = new UebergabeDAO();
     private ReservierungDAO reservierungdao = new ReservierungDAO();
     private SchadensberichtDAO schadensberichtdao = new SchadensberichtDAO();
+    private Reservierung reser = new Reservierung();
+
 
     public VertragDAO() {
     }
@@ -31,22 +35,33 @@ public class VertragDAO implements CRUDInterface<Vertrag> {
      */
     @Override
     public Vertrag create(Vertrag value) {
-        String createsql = "INSERT INTO vertrag (reservierungsid, tarifid) VALUES (" +
-                value.getReservierung().getReservierungsId() +
-                ", " + value.getTarif().getTarifNummer() + ")";
+        db.connect();
+        String createsql = "INSERT INTO vertrag (reservierungsid, tarifid) VALUES ("
+
+                + value.getReservierung().getReservierungsId()+ ", "
+                + value.getTarif().getTarifNummer() + ");";
+
         String selectsql = "SELECT * FROM vertrag WHERE vertragsid IN (SELECT MAX(vertragsid) in vertrag)";
 
-        db.connect();
+
+
         try {
             db.executeUpdate(createsql);
             ResultSet rs = db.executeQuery(selectsql);
-            result = convertRsToVertrag(rs);
-            db.closeConnection();
+            Vertrag result = convertRsToVertrag(rs).get(0);
+
+            return null;
         } catch (SQLException e) {
             System.err.println("Fehler VertragDAO create");
             e.printStackTrace();
+        } finally {
+            try {
+                db.closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        return result.get(0);
+        return null;
     }
 
     /**
@@ -120,19 +135,18 @@ public class VertragDAO implements CRUDInterface<Vertrag> {
 
     public List<Vertrag> convertRsToVertrag(ResultSet rs) throws SQLException {
         List<Vertrag> result = new ArrayList<Vertrag>();
-
+       Vertrag vertrag = new Vertrag();
 
         while (rs.next()) {
-            vertrag = new Vertrag();
 
-            vertrag.setId(rs.getLong("vertragsid"));
+
 
             vertrag.setTarif(tarifdao.read(rs.getLong("tarifid")));
-            vertrag.setReservierung(reservierungdao.read(rs.getLong("Reservierungsid")));
-            vertrag.setRueckgabe(rueckgabeDAO.read(vertrag.getId()));
-            vertrag.setUebergabe(uebergabeDAO.read(vertrag.getId()));
-            vertrag.setSchadensbericht(schadensberichtdao.read(vertrag.getReservierung().getAnhaenger().getId(),
-                    vertrag.getRueckgabe().getDatum()));
+            vertrag.setReservierung(reservierungdao.read(rs.getLong("reservierungsid")));
+          //  vertrag.setRueckgabe(rueckgabeDAO.read(vertrag.getId()));
+            //vertrag.setUebergabe(uebergabeDAO.read(vertrag.getId()));
+           // vertrag.setSchadensbericht(schadensberichtdao.read(vertrag.getReservierung().getAnhaenger().getId(),
+             //         vertrag.getRueckgabe().getDatum()));
 
             result.add(vertrag);
         }
