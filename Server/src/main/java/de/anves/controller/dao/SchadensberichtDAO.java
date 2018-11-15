@@ -1,13 +1,12 @@
 package de.anves.controller.dao;
 
+import de.anves.Schadensbericht;
+import de.anves.controller.db.DBController;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-
-
-import de.anves.Schadensbericht;
-import de.anves.controller.db.DBController;
 
 public class SchadensberichtDAO implements CRUDInterface<Schadensbericht>
 {

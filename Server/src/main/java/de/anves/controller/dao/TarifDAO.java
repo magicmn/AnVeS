@@ -28,7 +28,7 @@ public class TarifDAO implements CRUDInterface<Tarif> {
     @Override
     public Tarif create(Tarif value) {
         db.connect();
-        String sqlCreate = "INSERT INTO tarif(Anhängertyp, TarifNr, Tarifbezeichnung, Gültigab, Gültigbis, Preis) VALUES ('" +
+        String sqlCreate = "INSERT INTO tarif(Anhängertyp, tarifid, Tarifbezeichnung, Gültigab, Gültigbis, Preis) VALUES ('" +
                 value.getAnhaengerTyp() + "', " +
                 value.getTarifNummer() + ", '" +
                 value.getTarifBezeichnung() + "', " +
@@ -66,7 +66,7 @@ public class TarifDAO implements CRUDInterface<Tarif> {
      */
     public Tarif read(long tarifNummer, String anhaengerTyp) {
         db.connect();
-        String sqlCreate = "SELECT * FROM Tarif WHERE TarifNr = " + tarifNummer + " AND Anhängertyp = '" + anhaengerTyp + "'";
+        String sqlCreate = "SELECT * FROM Tarif WHERE tarifid = " + tarifNummer + " AND Anhängertyp = '" + anhaengerTyp + "'";
 
         try {
             return convertRsToTarif(db.executeQuery(sqlCreate));
@@ -85,7 +85,7 @@ public class TarifDAO implements CRUDInterface<Tarif> {
 
     /**
      * Updaten eines Tarifs <p>
-     * @param value Objekt des Typs Tarif
+     * @param value Objekt des Typs Tarifw
      * @return Updated Objekt des Typs Tarif
      */
     @Override
@@ -94,11 +94,11 @@ public class TarifDAO implements CRUDInterface<Tarif> {
 
         String sqlUpdate = "UPDATE Tarif " +
                 "SET Anhängertyp = '" + value.getAnhaengerTyp() + "', " +
-                "TarifNr = " + value.getTarifNummer() +", " +
+                "tarifid = " + value.getTarifNummer() +", " +
                 "Tarifbezeichnung = '" + value.getTarifBezeichnung() + "', " +
                 "Gültigab = " + value.getGueltigAb().getTime() + ", " +
                 "Gültigbis = " + value.getGueltigBis().getTime() + " " +
-                " WHERE TarifNr = " + value.getTarifNummer() + " AND Anhängertyp = '" + value.getAnhaengerTyp() + "';";
+                " WHERE tarifid = " + value.getTarifNummer() + " AND Anhängertyp = '" + value.getAnhaengerTyp() + "';";
         System.out.println(sqlUpdate);
         try {
             db.executeUpdate(sqlUpdate);
@@ -127,7 +127,7 @@ public class TarifDAO implements CRUDInterface<Tarif> {
 
         String sql = "DELETE FROM Tarif WHERE Tarifbezeichnung = '"
                 + value.getTarifBezeichnung() +
-                "' AND TarifNr = " + value.getTarifNummer();
+                "' AND tarifid = " + value.getTarifNummer();
         System.out.println(sql);
         try {
             db.executeUpdate(sql);
@@ -187,7 +187,7 @@ public class TarifDAO implements CRUDInterface<Tarif> {
             tarif.setGueltigAb(rs.getDate("Gültigab"));
             tarif.setGueltigBis(rs.getDate("Gültigbis"));
             tarif.setTarifBezeichnung(rs.getString("Tarifbezeichnung"));
-            tarif.setTarifNummer(rs.getLong("TarifNr"));
+            tarif.setTarifNummer(rs.getLong("tarifid"));
             tarif.setPreis(rs.getDouble("Preis"));
             result.add(tarif);
         }
@@ -209,7 +209,7 @@ public class TarifDAO implements CRUDInterface<Tarif> {
             tarif.setGueltigAb(rs.getDate("Gültigab"));
             tarif.setGueltigBis(rs.getDate("Gültigbis"));
             tarif.setTarifBezeichnung(rs.getString("Tarifbezeichnung"));
-            tarif.setTarifNummer(rs.getLong("TarifNr"));
+            tarif.setTarifNummer(rs.getLong("tarifid"));
             tarif.setPreis(rs.getDouble("Preis"));
         }
         return tarif;

@@ -1,5 +1,11 @@
 package de.anves.controller.server;
 
+import de.anves.Anhaenger;
+import de.anves.Kunde;
+import de.anves.Reservierung;
+import de.anves.controller.dao.*;
+import de.anves.model.transfer.TransferObject;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -10,16 +16,22 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.anves.Anhaenger;
-import de.anves.Reservierung;
-import de.anves.controller.dao.AnhaengerDAO;
-import de.anves.model.transfer.TransferObject;
-
 public class VerarbeitungsController extends Thread {
 
 	private static LinkedList<Socket> queue = new LinkedList<Socket>();
 	private ObjectOutputStream outStream;
 	private ObjectInputStream inStream;
+
+	//DAOs
+	private AnhaengerDAO anhaengerDAO = new AnhaengerDAO();
+	private KundeDAO kundeDAO = new KundeDAO();
+	private MitarbeiterDAO mitarbeiterDAO = new MitarbeiterDAO();
+	private ReservierungDAO reservierungDAO = new ReservierungDAO();
+	private RueckgabeDAO rueckgabeDAO = new RueckgabeDAO();
+	private SchadensberichtDAO schadensberichtDAO = new SchadensberichtDAO();
+	private TarifDAO tarifDAO = new TarifDAO();
+	private UebergabeDAO uebergabeDAO = new UebergabeDAO();
+	private VertragDAO vertragDAO = new VertragDAO();
 
 	
 	private static VerarbeitungsController instance;
@@ -86,19 +98,54 @@ public class VerarbeitungsController extends Thread {
 		
 	public void getREADLISTReservierung(TransferObject obj)throws IOException{
 		List<Anhaenger> anhaengerList = new ArrayList<Anhaenger>();
-		AnhaengerDAO anhaengerdao = new AnhaengerDAO();
+		anhaengerDAO = new AnhaengerDAO();
 
 		Reservierung reservierung = (Reservierung) obj.getObject();
-		anhaengerList = anhaengerdao.readList(reservierung.getVertragBeginn(), reservierung.getVertragsEnde(),
+		anhaengerList = anhaengerDAO.readList(reservierung.getVertragBeginn(), reservierung.getVertragsEnde(),
 				reservierung.getAnhaenger().getAnhaengerTyp());
 
 		outStream.writeObject(anhaengerList);
 		outStream.flush();
 
 	}
- 
- 
- 
+
+	/**
+	 * liest eine Liste mit Kunden aus der Datenbank
+	 *
+	 * @param tobj	: transferobjekt, das übergeben wurde
+	 *
+	 * @author Joern Felling
+	 */
+	public void getREADLISTKunde(TransferObject tobj) throws IOException {
+		List<Kunde> result = new ArrayList<>();	//Liste für die Rückgabe initialisieren
+
+		//Wenn der Nachname im Übergeben tobj gesetzt wurde wird mit Nachname und gebdat gesucht
+		if(((Kunde)tobj.getObject()).getNachname() != null){
+			result = kundeDAO.searchNachname((Kunde)tobj.getObject());
+		}else if(((Kunde)tobj.getObject()).getVorname() != null){		//Wenn Vorname gesetzt ist wird mit
+			result = kundeDAO.searchVorname((Kunde)tobj.getObject());	//	Vorname und Gebdat gesucht
+		}
+
+		//Ergebnis an Client zurückgeben
+		outStream.writeObject(result);
+		outStream.flush();
+	}
+
+	/**
+	 * liest einen Kunden anhand der ID aus der Datenbank
+	 *
+	 * @param tobj	: transferobjekt, das übergeben wurde
+	 *
+	 * @author Joern Felling
+	 */
+	public void getREADKunde(TransferObject tobj) throws IOException {
+		//Kunden aus Datenbank selektieren
+		Kunde result = kundeDAO.read(((Kunde)tobj.getObject()).getId());
+
+		//Ergebnis an Client zurückgeben
+		outStream.writeObject(result);
+		outStream.flush();
+	}
 	
 	
 	public LinkedList<Socket> getQueue(){

@@ -1,15 +1,15 @@
 
 package de.anves.controller.dao;
 
+import de.anves.Anhaenger;
+import de.anves.AnhaengerTyp;
+import de.anves.controller.db.DBController;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-
-import de.anves.Anhaenger;
-import de.anves.AnhaengerTypEnum;
-import de.anves.Reservierung;
-import de.anves.controller.db.DBController;
+import java.util.List;
 
 /**
  * @author Konstantin
@@ -24,7 +24,7 @@ public class AnhaengerDAO implements CRUDInterface<Anhaenger> {
         String createsql = "INSERT INTO anhänger(AnhängerID, AnhängerTYP, Kennzeichen, nächsteHU) VALUES " + "("
                 + value.getId() + ", "
                 //Anhängettyp als INT an die datenbank übergeben
-                + value.getAnhaengerTyp().ordinal() + ", '"
+                + value.getAnhaengerTyp().id + ", '"
                 + value.getKennzeichen() + "',"
                 + value.getNaechsteHU().getTime() + " )";
         String selectsql = "SELECT * FROM anhänger WHERE AnhängerID IN (SELECT max(AnhängerID) FROM Anhänger)";
@@ -54,18 +54,13 @@ public class AnhaengerDAO implements CRUDInterface<Anhaenger> {
 
     @Override
     public Anhaenger read(long id) {
-        ArrayList<Anhaenger> result;
-        String selectsql = "SELECT * FROM anhänger WHERE AnhängerID = " + id;
+        List<Anhaenger> result = null;
+        String selectsql = "SELECT * FROM anhänger WHERE AnhängerID=" + id;
         db.connect();
         try {
             ResultSet rs = db.executeQuery(selectsql);
-
             result = convertRStoAnhaenger(rs);
-            if (!result.isEmpty()) {
-                return result.get(0);
-            }
         } catch (SQLException e) {
-            System.out.println(e.toString());
             e.printStackTrace();
         } finally {
             try {
@@ -74,9 +69,9 @@ public class AnhaengerDAO implements CRUDInterface<Anhaenger> {
                 System.out.println(e + " in line " + this.getClass().getSimpleName());
                 e.printStackTrace();
             }
-
         }
-        return null;
+        System.out.println(result.get(0));
+        return result.isEmpty() ? null : result.get(0);
     }
 
     @Override
@@ -145,18 +140,18 @@ public class AnhaengerDAO implements CRUDInterface<Anhaenger> {
      * @return Liste verfügbarer Anhänger
      */
 
-    public ArrayList<Anhaenger> readList(Date start, Date end, AnhaengerTypEnum anhaengerTyp){
-        ArrayList<Anhaenger> result;
-        String selectsql = "SELECT * FROM anhänger WHERE anhängetyp = "+anhaengerTyp.ordinal()+" AND anhaengerid NOT IN " +
-                "( SELECT anhaengerid FROM `reservierung` WHERE bis < "+start+" OR von > "+end+")";
+    public List<Anhaenger> readList(Date start, Date end, AnhaengerTyp anhaengerTyp) {
+        List<Anhaenger> result = new ArrayList<>();
+        String partOfSelectSQL = " ";
+        if (anhaengerTyp != null) {
+            partOfSelectSQL = " AnhängerTYP=" + anhaengerTyp.id + " AND ";
+        }
+        String selectsql = "SELECT * FROM anhänger WHERE" + partOfSelectSQL + "anhängerid NOT IN (SELECT anhängerid FROM `reservierung` WHERE von > " + start.getTime() + " AND bis < " + end.getTime() + ")";
         db.connect();
         try {
             ResultSet rs = db.executeQuery(selectsql);
 
             result = convertRStoAnhaenger(rs);
-            if (!result.isEmpty()) {
-                return result;
-            }
         } catch (SQLException e) {
             System.out.println(e.toString());
             e.printStackTrace();
@@ -169,7 +164,8 @@ public class AnhaengerDAO implements CRUDInterface<Anhaenger> {
             }
 
         }
-        return null;
+        System.out.print(result);
+        return null == result ? new ArrayList<>() : result;
     }
     private ArrayList<Anhaenger> convertRStoAnhaenger(ResultSet rs) throws SQLException {
         ArrayList<Anhaenger> result = new ArrayList<Anhaenger>();
@@ -177,10 +173,11 @@ public class AnhaengerDAO implements CRUDInterface<Anhaenger> {
         while (rs.next()) {
             Anhaenger anhaenger = new Anhaenger();
             //Enum zum INT konvertieren
-            anhaenger.setAnhaengerTyp((AnhaengerTypEnum.values()[rs.getInt("AnhängerTYP")]));
+            anhaenger.setAnhaengerTyp(AnhaengerTyp.getById(rs.getInt("AnhängerTYP")));
             anhaenger.setId(rs.getLong("AnhängerID"));
             anhaenger.setKennzeichen(rs.getString("Kennzeichen"));
             anhaenger.setNaechsteHU(new Date(rs.getLong("nächsteHU")));
+            anhaenger.setSchadensBerichte(new SchadensberichtDAO().readList(rs.getLong("AnhängerID")));
             result.add(anhaenger);
         }
 

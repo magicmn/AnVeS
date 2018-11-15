@@ -1,18 +1,14 @@
 package de.anves.view.controller;
 
 
-import de.anves.Kunde;
-import de.anves.Mitarbeiter;
-import de.anves.Reservierung;
-import de.anves.Vertrag;
+import de.anves.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -21,41 +17,91 @@ import java.util.Date;
 public class VertragController {
 
 
-    @GetMapping("/VertragAuswaehlen")
-    public String vertragAuswaehlen(@RequestParam(required = false) ArrayList<Vertrag> vertragsliste, Model model) {
-        vertragsliste = new ArrayList<>();
-        Vertrag vertrag = new Vertrag();
-        vertrag.setId(123);
-        vertrag.setReservierung(new Reservierung());
-        vertrag.getReservierung().setKunde(new Kunde());
-        vertrag.getReservierung().getKunde().setId(123456789);
-        vertrag.getReservierung().getKunde().setNachname("Hans");
-        vertrag.getReservierung().getKunde().setVorname("Peter");
 
-        vertrag.setRueckgabe(new Date(100000000));
-        vertrag.setUebergabe(new Date(100000000));
-        vertrag.setRueckgabeMitarbeiter(new Mitarbeiter());
-        vertragsliste.add(vertrag);
-        model.addAttribute("vertragsliste", vertragsliste);
+    /**
+     * Vertragsuchen Seite wird aufgebaut
+     * @param model
+     * @return
+     */
+    @GetMapping("/VertragSuchen")
+    public String getVertragSuchen(Model model) {
+            model.addAttribute("suchform",new Suchform());
+
+        return "VertragSuchen";
+    }
+
+    /**
+     * hier findet die Verarbeitung der VertragSuche statt
+     * @param form
+     * @param redirectAttributes
+     * @return
+     */
+    @PostMapping("/VertragSuchen")
+    public RedirectView postVertragSuchen(@ModelAttribute Suchform form, RedirectAttributes redirectAttributes) {
+       //TODO DUMMY entfernen
+        ArrayList<Vertrag> vertragsliste = new ArrayList<>();
+
+        redirectAttributes.addFlashAttribute("vertragsliste",vertragsliste);
+        return new RedirectView("/VertragAuswaehlen");
+
+
+
+    }
+
+    /**
+     * Hier wird die VertragAuswaehlen Seite aufgebaut
+     * @param flashAttribute Parameter werden aus POST von VertragSuchen bezogen
+     * @param model
+     * @return
+     */
+    @GetMapping("/VertragAuswaehlen")
+    public String vertragAuswaehlen(@ModelAttribute("flashAttribute") Object flashAttribute, Model model) {
+        model.addAttribute("redirectionAttribute", flashAttribute);
+
 
         return "VertragAuswaehlen";
     }
-    @GetMapping("/VertragSuchen")
-    public String getVertragSuchen(Model model) {
+    @PostMapping("/VertragAuswaehlen")
+    public RedirectView postVertragWaehlen(RedirectAttributes redirectAttributes){
+        return new RedirectView("/StatusAendern");
+    }
+
+    @PostMapping("/StatusAendern")
+    public String getStatusAendern(Model model) {
         model.addAttribute("suchform",new Suchform());
 
-        return "VertragSuchen";
+        return "StatusAendern";
     }
-    @PostMapping("/VertragSuchen")
-  public String postVertragSuchen(@ModelAttribute Suchform form, Model model) {
-      model.addAttribute("suchform",form);
+    ////////////////////////////////MODELATRIBUTE///////////////////////////////////////////////////////////////////////
 
-        return "VertragSuchen";
-    }
+
+    /**
+     * Modelattribute für die übertragung der Suchform
+     */
     public class Suchform
     {
         private long vertragID;
         private long kundenID;
+        private String von;
+        private String bis;
+
+        public String getVon() {
+            return von;
+        }
+
+        public void setVon(String von) {
+            this.von = von;
+        }
+
+        public String getBis() {
+            return bis;
+        }
+
+        public void setBis(String bis) {
+            this.bis = bis;
+        }
+
+
 
         public long getVertragID() {
             return vertragID;
@@ -73,24 +119,8 @@ public class VertragController {
             this.kundenID = kundenID;
         }
 
-        public Date getVon() {
-            return von;
-        }
 
-        public void setVon(Date von) {
-            this.von = von;
-        }
 
-        public Date getBis() {
-            return bis;
-        }
-
-        public void setBis(Date bis) {
-            this.bis = bis;
-        }
-
-        private Date von;
-        private Date bis;
 
     }
 
