@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -43,48 +43,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr th:each="k : ${kunden}">
                         <th scope="row">
                             <label class="form-check noplaceholder">
-                                <input class="form-check-input position-static" type="radio" id="row1" name="kundenAuswahl">
+                                <input class="form-check-input position-static" type="radio" th:field="*{kunde}" th:id="'kunde' + ${i.id}"
+                                       th:value="${i}">
                             </label>
                         </th>
-                        <td><label class="noplaceholder fillSpace" for="row1">Platzhalter1a</label></td>
-                        <td><label class="noplaceholder fillSpace" for="row1">Platzhalter1b</label></td>
-                        <td><label class="noplaceholder fillSpace" for="row1">Platzhalter1c</label></td>
-                        <td><label class="noplaceholder fillSpace" for="row1">Platzhalter1c</label></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <label class="form-check noplaceholder">
-                                <input class="form-check-input position-static" type="radio" id="row2" name="kundenAuswahl">
-                            </label>
-                        </th>
-                        <td><label class="noplaceholder fillSpace" for="row2">Platzhalter2a</label></td>
-                        <td><label class="noplaceholder fillSpace" for="row2">Platzhalter2b</label></td>
-                        <td><label class="noplaceholder fillSpace" for="row2">Platzhalter2c</label></td>
-                        <td><label class="noplaceholder fillSpace" for="row2">Platzhalter2d</label></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <label class="form-check noplaceholder">
-                                <input class="form-check-input position-static" type="radio" id="row3" name="kundenAuswahl">
-                            </label>
-                        </th>
-                        <td><label class="noplaceholder fillSpace" for="row3">Platzhalter3a</label></td>
-                        <td><label class="noplaceholder fillSpace" for="row3">Platzhalter3b</label></td>
-                        <td><label class="noplaceholder fillSpace" for="row3">Platzhalter3c</label></td>
-                        <td><label class="noplaceholder fillSpace" for="row3">Platzhalter4c</label></td>
+                        <td><label class="noplaceholder fillSpace" th:for="${i.id}" th:text="${i.id}"></label></td>
+                        <td><label class="noplaceholder fillSpace" th:for="${i.id}" th:text="${i.nachname}"></label></td>
+                        <td><label class="noplaceholder fillSpace" th:for="${i.id}" th:text="${i.vorname}"></label></td>
+                        <td><label class="noplaceholder fillSpace" th:for="${i.id}" th:text="${i.geburtsdatum}"></label></td>
                     </tr>
                 </tbody>
             </table>
     </div>
     <div class="form-group row bottom">
         <div class="col-sm-4">
-            <button type="submit" class="btn btn-primary btn-block">Kunde wählen</button>
+            <button type="submit" class="btn btn-primary btn-block" id="kundeWaehlen">Kunde wählen</button>
         </div>
         <div class="col-sm-4">
-                <button type="submit" class="btn btn-primary btn-block">Reservierung buchen und Vertrag erstellen</button>
+                <button type="submit" class="btn btn-primary btn-block" id="reservieren">Reservierung buchen und Vertrag erstellen</button>
             </div>
         <div class="col-sm-4">
             <button type="reset" class="btn btn-danger btn-block">Abbrechen</button>
@@ -92,7 +71,7 @@
     </div>
 </form>
 </section>
-
+<script src="./KundeAuswaehlen.js"></script>
 <footer>
 </footer>
 </body>

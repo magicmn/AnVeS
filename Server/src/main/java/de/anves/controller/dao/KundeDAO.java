@@ -70,7 +70,7 @@ public class KundeDAO implements CRUDInterface<Kunde>{
 
 	@Override
 	public Kunde read(long id) {
-	String readsql = "SELECT * FROM kunde WHERE kundeid = '" + id + "'";
+	String readsql = "SELECT * FROM kunde WHERE kundeid=" + id;
 		
 		db.connect();
 		try {

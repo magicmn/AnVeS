@@ -22,7 +22,7 @@ public class ClientController {
      * @param SERVERADRESS ist die IP Adresse des Servers
      */
 
-    private static final String SERVERADRESS ="172.25.13.231";
+    private static final String SERVERADRESS ="127.0.0.1";
     private static final int PORT = 50000;
     private Socket socket;
     private ObjectOutputStream outStream;
@@ -32,7 +32,7 @@ public class ClientController {
     public ClientController(){}
 
 
-        public List<Anhaenger> sucheAnhaenger(AnhaengerTyp anhaengerTyp, Date anfang, Date ende){
+    public List<Anhaenger> sucheAnhaenger(AnhaengerTyp anhaengerTyp, Date anfang, Date ende){
         Reservierung reservierung = new Reservierung();
 
         List<Anhaenger> anhaengerListe = new ArrayList<Anhaenger>();
@@ -119,7 +119,7 @@ public class ClientController {
 
             //Transferobjekt an Server schicken
             outStream.writeObject(tobj);
-            outStream.close();
+            outStream.flush();
 
             //Ergebnis vom Server holen
             result = (List<Kunde>)((TransferObject)inStream.readObject()).getObject();
@@ -152,7 +152,7 @@ public class ClientController {
 
             //Transferobjekt an Server schicken
             outStream.writeObject(tobj);
-            outStream.close();
+            outStream.flush();
 
             //Ergebnis vom Server holen
             result = (List<Kunde>)((TransferObject)inStream.readObject()).getObject();

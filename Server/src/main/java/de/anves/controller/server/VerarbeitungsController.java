@@ -140,6 +140,7 @@ public class VerarbeitungsController extends Thread {
 	 */
 	public void getREADKunde(TransferObject tobj) throws IOException {
 		//Kunden aus Datenbank selektieren
+
 		Kunde result = kundeDAO.read(((Kunde)tobj.getObject()).getId());
 
 		//Ergebnis an Client zurückgeben
