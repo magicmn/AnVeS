@@ -32,7 +32,7 @@ public class ClientController {
     public ClientController(){}
 
 
-    public List<Anhaenger> sucheAnhaenger(AnhaengerTyp anhaengerTyp, Date anfang, Date ende) {
+        public List<Anhaenger> sucheAnhaenger(AnhaengerTyp anhaengerTyp, Date anfang, Date ende){
         Reservierung reservierung = new Reservierung();
 
         List<Anhaenger> anhaengerListe = new ArrayList<Anhaenger>();
@@ -74,10 +74,29 @@ public class ClientController {
      *
      * @author Joern Felling
      */
-    public List<Kunde> kundenSuchenID(long id){
-        List<Kunde> result = null; //Rückgabeliste initialisieren
+    public Kunde kundenSuchenID(long id){
+        Kunde result = null; //Rückgabeliste initialisieren
 
-        return result;
+        try {
+            //Verbindung zum Server aufbauen
+            connectToServer();
+
+            //Transferobjekt erstellen
+            TransferObject tobj = new TransferObject(new Kunde().setId(id), TransferAction.READ);
+
+            //Transferobjekt an Server schicken
+            outStream.writeObject(tobj);
+            outStream.close();
+
+            //Ergebnis vom Server holen
+            result = (Kunde)((TransferObject)inStream.readObject()).getObject();
+
+            closeConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            return result;
+        }
     }
 
     /**
@@ -91,7 +110,26 @@ public class ClientController {
     public List<Kunde> kundenSuchenNachname(String Nachname, String gebDat){
         List<Kunde> result = null; //Rückgabeliste initialisieren
 
-        return result;
+        try {
+            //Verbindung zum Server aufbauen
+            connectToServer();
+
+            //Transferobjekt erstellen
+            TransferObject tobj = new TransferObject(new Kunde().setNachname(Nachname).setGeburtsdatum(gebDat), TransferAction.READLIST);
+
+            //Transferobjekt an Server schicken
+            outStream.writeObject(tobj);
+            outStream.close();
+
+            //Ergebnis vom Server holen
+            result = (List<Kunde>)((TransferObject)inStream.readObject()).getObject();
+
+            closeConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            return result;
+        }
     }
 
     /**
@@ -103,17 +141,28 @@ public class ClientController {
      * @author Joern Felling
      */
     public List<Kunde> kundenSuchenVorname(String Vorname, String gebDat){
-        List<Kunde> result = null;  //Rückgabeliste initialisieren
+        List<Kunde> result = null; //Rückgabeliste initialisieren
 
         try {
+            //Verbindung zum Server aufbauen
             connectToServer();
+
+            //Transferobjekt erstellen
+            TransferObject tobj = new TransferObject(new Kunde().setVorname(Vorname).setGeburtsdatum(gebDat), TransferAction.READ);
+
+            //Transferobjekt an Server schicken
+            outStream.writeObject(tobj);
+            outStream.close();
+
+            //Ergebnis vom Server holen
+            result = (List<Kunde>)((TransferObject)inStream.readObject()).getObject();
+
+            closeConnection();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            return result;
         }
-
-        closeConnection();
-
-        return result;
     }
 
 

@@ -156,6 +156,72 @@ public class KundeDAO implements CRUDInterface<Kunde>{
 		return false;
 	}
 
+	/**
+	 * Selektiert Kunden anhand von Nachname und Geburtsdatum aus der Datenbank und gibt Sie als ArrayList zurück
+	 * @param value	: Übergebenes Kundenobjekt
+	 * @return		: ArrayList<Kunde> mit Ergebnissen
+	 */
+	public List<Kunde> searchNachname(Kunde value){
+		//Select SQL-Statement zusammenbauen
+		String selectsql = "SELECT * FROM kunde WHERE Nachname=" + value.getNachname()
+				+ " AND WHERE Gebdat=" + value.getGeburtsdatum();
+
+		db.connect();
+		try {
+			//Datenbankabfrage ausführne
+			ResultSet dbResult = db.executeQuery(selectsql);
+
+			//Resultset auswerten
+			List<Kunde> result = convertRsToKunde(dbResult);
+
+			return result;	//Ergebniss zurückgeben
+		} catch (SQLException e) {
+			System.err.println("Kunde: upodateKunde: Fehler");
+			e.printStackTrace();
+		} finally {
+			try {
+				//Datenbankverbindung schließen
+				db.closeConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Selektiert Kunden anhand von Vorname und Geburtsdatum aus der Datenbank und gibt Sie in einer ArrayList zurück
+	 * @param value	: Übergebenes Kundenobjekt
+	 * @return		: ArrayList<Kunde> mit Ergebnissen
+	 */
+	public List<Kunde> searchVorname(Kunde value){
+		//Select SQL-Statement zusammenbauen
+		String selectsql = "SELECT * FROM kunde WHERE vorname=" + value.getVorname()
+				+ " AND WHERE Gebdat=" + value.getGeburtsdatum();
+
+		db.connect();
+		try {
+			//Datenbankabfrage ausführne
+			ResultSet dbResult = db.executeQuery(selectsql);
+
+			//Resultset auswerten
+			List<Kunde> result = convertRsToKunde(dbResult);
+
+			return result;	//Ergebniss zurückgeben
+		} catch (SQLException e) {
+			System.err.println("Kunde: upodateKunde: Fehler");
+			e.printStackTrace();
+		} finally {
+			try {
+				//Datenbankverbindung schließen
+				db.closeConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+
 	private List<Kunde> convertRsToKunde(ResultSet rs) throws SQLException {
 		List<Kunde> result = new ArrayList<Kunde>();
 		
