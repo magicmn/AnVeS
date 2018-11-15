@@ -44,8 +44,8 @@ public class KundeDAO implements CRUDInterface<Kunde>{
 										+ "'"+ value.getOrt()+ "',"
 											+ "'"+ value.getStrasse()+ "',"						
 				+ ""+ value.getHausnummer() +")";
-		
-		String selectsql = "SELECT * FROM user WHERE kundeid = max(kundeid)";
+
+		String selectsql = "SELECT * FROM kunde WHERE kundeid =( SELECT max(kundeid) FROM kunde)";
 		
 		db.connect();
 		try {
@@ -91,6 +91,31 @@ public class KundeDAO implements CRUDInterface<Kunde>{
 		}
 		return null;
 	}
+
+
+	public Kunde readlast() {
+		String selectsql = "SELECT * FROM kunde WHERE kundeid =( SELECT max(kundeid) FROM kunde)";
+
+		db.connect();
+		try {
+			ResultSet rs = db.executeQuery(selectsql);
+
+			Kunde result = convertRsToKunde(rs).get(0);
+
+			return result;
+		} catch (SQLException e) {
+			System.err.println("KundeDao: Read: Fehler");
+			e.printStackTrace();
+		} finally {
+			try {
+				db.closeConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+
 
 	@Override
 	public Kunde update(Kunde value) {

@@ -21,7 +21,8 @@ public class KundenAnlegenController {
     @GetMapping("/KundeAnlegen")
     public void kundenAnlegenForm(Model model) {
         model.addAttribute("Kunde", new Kunde());
-
+        model.addAttribute("Kundennummer", kundeDAO.readlast().getId() + 1);
+        model.addAttribute("SpeichernErfolgreich", "true");
     }
 
 
@@ -29,8 +30,13 @@ public class KundenAnlegenController {
     @PostMapping("/KundeAnlegen")
     public void kundenAnlegenSubmit(@Valid @ModelAttribute("Kunde")Kunde kunde,
             BindingResult result,  Model model) {
+
+
         if (result.hasErrors()) {
             System.out.println("oops");
+
+        }else{
+            model.addAttribute("SpeichernErfolgreich", "false");
         }
         //model.addAttribute("geburtsdatum", "testDatumVonJAvaAUS");
         System.out.println(kunde.getId()) ;
@@ -43,8 +49,16 @@ public class KundenAnlegenController {
         System.out.println(kunde.getHausnummer());
 
 
-        kundeDAO.create(kunde);
-        //return "";
+        Kunde erstellterKunde = kundeDAO.create(kunde);
+        model.addAttribute("Kundennummer", kundeDAO.read(erstellterKunde.getId()).getId());
+
      }
+
+
+
+
+
+
+
 
 }
