@@ -29,11 +29,11 @@
 </nav>
 
 <section class="container-fluid col-sm-9">
-    <form action="#" th:action="@{/VerfuegbareAnhaenger}" th:object="" method="post">
+    <form action="#" th:action="@{/VerfuegbareAnhaenger}" th:object="${anhaengerSuchenForm}" method="post">
     <div class="form-group row">
         <label for="anhaengerTyp" class="col-sm-2 col-form-label">Anhängertyp</label>
         <div class="col-sm-10">
-            <select id="anhaengerTyp" class="form-control">
+            <select id="anhaengerTyp" class="form-control" th:field="*{AnhaengerTyp}">
                 <option th:each="i : ${anhaengerTypen}" th:value="i"
                         th:text="${#strings.capitalize(#strings.toLowerCase(i))}"></option>
             </select>

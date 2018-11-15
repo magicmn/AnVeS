@@ -1,7 +1,7 @@
 package de.anves.view.controller;
 
 import de.anves.Anhaenger;
-import de.anves.AnhaengerTypEnum;
+import de.anves.AnhaengerTyp;
 import de.anves.Schadensbericht;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +33,7 @@ public class VerfuegbareAnhaenger {
         schadensberichtListe.add(schadensbericht);
 
         Anhaenger anhaenger = new Anhaenger();
-        anhaenger.setAnhaengerTyp(AnhaengerTypEnum.EINACHSER);
+        anhaenger.setAnhaengerTyp(AnhaengerTyp.EINACHSER);
         anhaenger.setId(1);
         anhaenger.setKennzeichen("K-ZZ 1234");
         anhaenger.setNaechsteHU(date);
