@@ -152,7 +152,6 @@ public class AnhaengerDAO implements CRUDInterface<Anhaenger> {
             partOfSelectSQL = " anhängetyp=" + anhaengerTyp.ordinal() + " AND ";
         }
         String selectsql = "SELECT * FROM anhänger WHERE" + partOfSelectSQL + "anhängerid NOT IN (SELECT anhängerid FROM `reservierung` WHERE von > " + start.getTime() + " AND bis < " + end.getTime() + ")";
-        System.out.print(selectsql);
         db.connect();
         try {
             ResultSet rs = db.executeQuery(selectsql);
