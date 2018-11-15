@@ -2,18 +2,13 @@ package de.anves.view.controller;
 
 
 import de.anves.*;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
-
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -22,13 +17,12 @@ import java.util.Date;
 public class VertragController {
 
 
-    @GetMapping("/VertragAuswaehlen")
-    public String vertragAuswaehlen(@ModelAttribute("flashAttribute") Object flashAttribute, Model model) {
-      model.addAttribute("redirectionAttribute", flashAttribute);
 
-
-        return "VertragAuswaehlen";
-    }
+    /**
+     * Vertragsuchen Seite wird aufgebaut
+     * @param model
+     * @return
+     */
     @GetMapping("/VertragSuchen")
     public String getVertragSuchen(Model model) {
             model.addAttribute("suchform",new Suchform());
@@ -36,30 +30,54 @@ public class VertragController {
         return "VertragSuchen";
     }
 
+    /**
+     * hier findet die Verarbeitung der VertragSuche statt
+     * @param form
+     * @param redirectAttributes
+     * @return
+     */
     @PostMapping("/VertragSuchen")
     public RedirectView postVertragSuchen(@ModelAttribute Suchform form, RedirectAttributes redirectAttributes) {
+       //TODO DUMMY entfernen
         ArrayList<Vertrag> vertragsliste = new ArrayList<>();
-        Vertrag vertrag = new Vertrag();
-        vertrag.setId(123);
-        vertrag.setReservierung(new Reservierung());
-        vertrag.getReservierung().setKunde(new Kunde());
-        vertrag.getReservierung().getKunde().setId(123456789);
-        vertrag.getReservierung().getKunde().setNachname("Hans");
-        vertrag.getReservierung().getKunde().setVorname("Peter");
 
-        vertrag.setRueckgabe(new Rueckgabe());
-        vertrag.setUebergabe(new Uebergabe());
-        vertrag.getRueckgabe().setDatum(new Date(100000000));
-        vertrag.getUebergabe().setDatum(new Date(100000600));
-        vertragsliste.add(vertrag);
         redirectAttributes.addFlashAttribute("vertragsliste",vertragsliste);
-
-
         return new RedirectView("/VertragAuswaehlen");
 
 
 
     }
+
+    /**
+     * Hier wird die VertragAuswaehlen Seite aufgebaut
+     * @param flashAttribute Parameter werden aus POST von VertragSuchen bezogen
+     * @param model
+     * @return
+     */
+    @GetMapping("/VertragAuswaehlen")
+    public String vertragAuswaehlen(@ModelAttribute("flashAttribute") Object flashAttribute, Model model) {
+        model.addAttribute("redirectionAttribute", flashAttribute);
+
+
+        return "VertragAuswaehlen";
+    }
+    @PostMapping("/VertragAuswaehlen")
+    public RedirectView postVertragWaehlen(RedirectAttributes redirectAttributes){
+        return new RedirectView("/StatusAendern");
+    }
+
+    @PostMapping("/StatusAendern")
+    public String getStatusAendern(Model model) {
+        model.addAttribute("suchform",new Suchform());
+
+        return "StatusAendern";
+    }
+    ////////////////////////////////MODELATRIBUTE///////////////////////////////////////////////////////////////////////
+
+
+    /**
+     * Modelattribute für die übertragung der Suchform
+     */
     public class Suchform
     {
         private long vertragID;

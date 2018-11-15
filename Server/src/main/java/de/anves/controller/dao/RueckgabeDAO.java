@@ -13,7 +13,7 @@ public class RueckgabeDAO implements CRUDInterface<Rueckgabe> {
     private DBController db = DBController.getInstance();
     private Rueckgabe rueckgabe = new Rueckgabe();
     private MitarbeiterDAO mitarbeiterDAO = new MitarbeiterDAO();
-    private VertragDAO vertragdao = new VertragDAO();
+
 
     @Override
     public Rueckgabe create(Rueckgabe value) {
@@ -93,7 +93,7 @@ public class RueckgabeDAO implements CRUDInterface<Rueckgabe> {
             rueckgabe = new Rueckgabe();
             rueckgabe.setDatum(new Date(rs.getLong("datum")));
             rueckgabe.setMitarbeiter(mitarbeiterDAO.read(rs.getLong("mitarbeiterid")));
-            rueckgabe.setVertragid(vertragdao.read(rs.getLong("vertragsid")).getId());
+            rueckgabe.setVertragid(rs.getLong("vertragsid"));
 
         }
         return rueckgabe;

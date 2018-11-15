@@ -15,7 +15,7 @@ public class UebergabeDAO implements CRUDInterface<Uebergabe> {
     private DBController db = DBController.getInstance();
     private Uebergabe uebergabe = new Uebergabe();
     private MitarbeiterDAO mitarbeiterDAO = new MitarbeiterDAO();
-    private VertragDAO vertragdao = new VertragDAO();
+
 
     @Override
     public Uebergabe create(Uebergabe value) {
@@ -95,7 +95,7 @@ public class UebergabeDAO implements CRUDInterface<Uebergabe> {
             uebergabe = new Uebergabe();
             uebergabe.setDatum(new Date(rs.getLong("datum")));
             uebergabe.setMitarbeiter(mitarbeiterDAO.read(rs.getLong("mitarbeiterid")));
-            uebergabe.setVertragid(vertragdao.read(rs.getLong("vertragsid")).getId());
+            uebergabe.setVertragid(rs.getLong("vertragsid"));
 
         }
         return uebergabe;
