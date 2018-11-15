@@ -7,6 +7,7 @@ public class Uebergabe extends DBManaged{
     private Mitarbeiter mitarbeiter;
     private Date datum;
     private long vertragid;
+    private Vertrag vertrag;
 
     public Mitarbeiter getMitarbeiter() {
         return mitarbeiter;
@@ -35,4 +36,12 @@ public class Uebergabe extends DBManaged{
         return vertragid;
     }
 
+    public Vertrag getVetrag() {
+        return vertrag;
+    }
+
+    public Uebergabe setVetrag(Vertrag vertrag) {
+        this.vertrag = vertrag;
+        return this;
+    }
 }

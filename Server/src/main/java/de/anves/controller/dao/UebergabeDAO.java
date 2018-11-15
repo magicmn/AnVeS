@@ -1,7 +1,6 @@
 package de.anves.controller.dao;
 
 import de.anves.Uebergabe;
-import de.anves.Uebergabe;
 import de.anves.controller.db.DBController;
 
 import java.sql.ResultSet;
@@ -19,11 +18,11 @@ public class UebergabeDAO implements CRUDInterface<Uebergabe> {
 
     @Override
     public Uebergabe create(Uebergabe value) {
-
-        String createsql = "INSERT INTO rückgabe (vertragsid, mitarbeiterid, datum) VALUES ("
-                +value.getVertragid()+", "+value.getMitarbeiter().getId()+", "+value.getDatum().getTime();
-        String selectsql = "SELECT * FROM rückgabe WHERE vertragsid = "+value.getVertragid();
         db.connect();
+        String createsql = "INSERT INTO rückgabe (vertragsid, mitarbeiterid, datum) VALUES ("
+                +value.getVertragid()+", "+value.getMitarbeiter().getId()+", "+value.getDatum().getTime() + ");";
+        String selectsql = "SELECT * FROM rückgabe WHERE vertragsid = "+value.getVertragid();
+
         try{
             db.executeUpdate(createsql);
             ResultSet rs = db.executeQuery(selectsql);
@@ -91,8 +90,9 @@ public class UebergabeDAO implements CRUDInterface<Uebergabe> {
 
     private Uebergabe convertRsToUebergabe(ResultSet rs) throws SQLException {
         List<Uebergabe> result = new ArrayList<Uebergabe>();
+        uebergabe = new Uebergabe();
         while(rs.next()){
-            uebergabe = new Uebergabe();
+
             uebergabe.setDatum(new Date(rs.getLong("datum")));
             uebergabe.setMitarbeiter(mitarbeiterDAO.read(rs.getLong("mitarbeiterid")));
             uebergabe.setVertragid(rs.getLong("vertragsid"));

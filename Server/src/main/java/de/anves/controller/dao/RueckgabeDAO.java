@@ -14,12 +14,13 @@ public class RueckgabeDAO implements CRUDInterface<Rueckgabe> {
     private Rueckgabe rueckgabe = new Rueckgabe();
     private MitarbeiterDAO mitarbeiterDAO = new MitarbeiterDAO();
 
-
-    @Override
+@Override
     public Rueckgabe create(Rueckgabe value) {
 
         String createsql = "INSERT INTO rückgabe (vertragsid, mitarbeiterid, datum) VALUES ("
-                +value.getVertragid()+", "+value.getMitarbeiter().getId()+", "+value.getDatum().getTime();
+                +value.getVertragid()+", "+value.getMitarbeiter().getId()+", "+value.getDatum().getTime() + ");";
+
+
         String selectsql = "SELECT * FROM rückgabe WHERE vertragsid = "+value.getVertragid();
         db.connect();
         try{
@@ -35,6 +36,8 @@ public class RueckgabeDAO implements CRUDInterface<Rueckgabe> {
 
         return rueckgabe;
     }
+
+
 
     @Override
     public Rueckgabe read(long id) {
@@ -89,8 +92,9 @@ public class RueckgabeDAO implements CRUDInterface<Rueckgabe> {
 
     private Rueckgabe convertRsToRueckgabe(ResultSet rs) throws SQLException {
         List<Rueckgabe> result = new ArrayList<Rueckgabe>();
+        rueckgabe = new Rueckgabe();
         while(rs.next()){
-            rueckgabe = new Rueckgabe();
+
             rueckgabe.setDatum(new Date(rs.getLong("datum")));
             rueckgabe.setMitarbeiter(mitarbeiterDAO.read(rs.getLong("mitarbeiterid")));
             rueckgabe.setVertragid(rs.getLong("vertragsid"));

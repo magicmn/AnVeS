@@ -6,6 +6,7 @@ public class Rueckgabe extends DBManaged {
 
     private Mitarbeiter mitarbeiter;
     private Date datum;
+    private Vertrag vertrag;
     private long vertragid;
 
     public Mitarbeiter getMitarbeiter() {
@@ -26,12 +27,22 @@ public class Rueckgabe extends DBManaged {
         return this;
     }
 
-    public Rueckgabe setVertragid(long vertragid){
+    public Rueckgabe setVertragid(long vertragid) {
         this.vertragid = vertragid;
         return this;
     }
 
     public long getVertragid() {
         return vertragid;
+    }
+
+
+    public Vertrag getVetrag() {
+        return vertrag;
+    }
+
+    public Rueckgabe setVetrag(Vertrag vertrag) {
+        this.vertrag = vertrag;
+        return this;
     }
 }

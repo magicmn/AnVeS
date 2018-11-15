@@ -1,5 +1,8 @@
 package de.anves.controller.dao;
 
+import de.anves.Kunde;
+import de.anves.controller.db.DBController;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -7,9 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import de.anves.Kunde;
-import de.anves.controller.db.DBController;
 
 public class KundeDAO implements CRUDInterface<Kunde>{
 
