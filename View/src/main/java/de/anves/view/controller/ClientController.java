@@ -31,37 +31,7 @@ public class ClientController {
 
     public ClientController(){}
 
-    /**
-     * stellt die Verbindung zum Server her und baut die Streams auf
-     *
-     * @author Leon
-     */
-    private void connectToServer() {
-        try {
-            System.out.println("Try to connect");
-            socket = new Socket(SERVERADRESS, PORT);
-            System.out.println("conncetion status: " + socket.isConnected());
-            outStream = new ObjectOutputStream(socket.getOutputStream());
-            inStream = new ObjectInputStream(socket.getInputStream());
-        }catch(IOException e){
-            System.err.println("Fehler ClientController connectToServer connection failed");
-            e.printStackTrace();
-        }
-    }
 
-    private void closeConnection(){
-
-            try {
-                if(outStream != null)outStream.close();
-                if(inStream != null)inStream.close();
-                if(socket != null)socket.close();
-
-            } catch (IOException e) {
-                System.err.println("Fehler ClientController closeConnection");
-                e.printStackTrace();
-            }
-
-    }
         public List<Anhaenger> sucheAnhaenger(AnhaengerTypEnum anhaengerTyp, Date anfang, Date ende){
         Reservierung reservierung = new Reservierung();
 
@@ -135,11 +105,42 @@ public class ClientController {
     public List<Kunde> kundenSuchenVorname(String Vorname, String gebDat){
         List<Kunde> result = null;  //Rückgabeliste initialisieren
 
-        connectToServer();
+        try {
+            connectToServer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         closeConnection();
 
         return result;
     }
 
+
+    /**
+     * stellt die Verbindung zum Server her und baut die Streams auf
+     *
+     * @author Leon
+     */
+    private void connectToServer() throws IOException {
+        System.out.println("Try to connect");
+        socket = new Socket(SERVERADRESS, PORT);
+        System.out.println("conncetion status: " + socket.isConnected());
+        outStream = new ObjectOutputStream(socket.getOutputStream());
+        inStream = new ObjectInputStream(socket.getInputStream());
+    }
+
+    private void closeConnection(){
+
+        try {
+            if(outStream != null)outStream.close();
+            if(inStream != null)inStream.close();
+            if(socket != null)socket.close();
+
+        } catch (IOException e) {
+            System.err.println("Fehler ClientController closeConnection");
+            e.printStackTrace();
+        }
+
+    }
 }
