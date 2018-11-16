@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    
 <header>
     <div>
         <h1>AnVeS</h1>
@@ -62,10 +61,10 @@
     </div>
     <div class="form-group row bottom">
         <div class="col-sm-6">
-            <button type="submit" class="btn btn-primary btn-block">Anhänger suchen</button>
+            <button type="submit" id="submitButton" class="btn btn-primary btn-block" disabled>Anhänger suchen</button>
         </div>
         <div class="col-sm-6">
-            <button type="reset" class="btn btn-danger btn-block">Zurücksetzen</button>
+            <button type="reset" class="btn btn-danger btn-block" onclick="location.reload()">Zurücksetzen</button>
         </div>
     </div>
 </form>
@@ -73,5 +72,7 @@
 
 <footer>
 </footer>
+<script type="text/JavaScript" src="/lib/moment.js"></script>
+<script type="text/JavaScript" src="./AnhaengerSuchen.js"></script>
 </body>
 </html>

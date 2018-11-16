@@ -24,8 +24,6 @@ public class AnhaengerController {
 
     @PostMapping("/VerfuegbareAnhaenger")
     public String submitAnhaengerSuchen(@ModelAttribute AnhaengerSuchenForm anhaengerSuchenForm, Model model) {
-        System.out.println(anhaengerSuchenForm);
-        System.out.println(new AnhaengerDAO().readList(anhaengerSuchenForm.zeitraumVon, anhaengerSuchenForm.zeitraumBis, anhaengerSuchenForm.anhaengerTyp));
         model.addAttribute("anhaengerList", new AnhaengerDAO().readList(anhaengerSuchenForm.zeitraumVon, anhaengerSuchenForm.zeitraumBis, anhaengerSuchenForm.anhaengerTyp));
         model.addAttribute("VerfuegbareAnhaengerForm", new VerfuegbareAnhaengerForm());
         return "VerfuegbareAnhaenger";
@@ -61,15 +59,6 @@ public class AnhaengerController {
 
         public void setZeitraumBis(Date zeitraumBis) {
             this.zeitraumBis = zeitraumBis;
-        }
-
-        @Override
-        public String toString() {
-            return "AnhaengerSuchenForm{" +
-                    "anhaengerTyp=" + anhaengerTyp +
-                    ", zeitraumVon=" + zeitraumVon +
-                    ", zeitraumBis=" + zeitraumBis +
-                    '}';
         }
     }
 

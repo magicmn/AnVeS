@@ -22,7 +22,7 @@ public class ClientController {
      * @param SERVERADRESS ist die IP Adresse des Servers
      */
 
-    private static final String SERVERADRESS ="172.25.13.231";
+    private static final String SERVERADRESS ="127.0.0.1";
     private static final int PORT = 50000;
     private Socket socket;
     private ObjectOutputStream outStream;
@@ -32,7 +32,7 @@ public class ClientController {
     public ClientController(){}
 
 
-        public List<Anhaenger> sucheAnhaenger(AnhaengerTyp anhaengerTyp, Date anfang, Date ende){
+    public List<Anhaenger> sucheAnhaenger(AnhaengerTyp anhaengerTyp, Date anfang, Date ende){
         Reservierung reservierung = new Reservierung();
 
         List<Anhaenger> anhaengerListe = new ArrayList<Anhaenger>();
@@ -119,7 +119,7 @@ public class ClientController {
 
             //Transferobjekt an Server schicken
             outStream.writeObject(tobj);
-            outStream.close();
+            outStream.flush();
 
             //Ergebnis vom Server holen
             result = (List<Kunde>)((TransferObject)inStream.readObject()).getObject();
@@ -152,7 +152,7 @@ public class ClientController {
 
             //Transferobjekt an Server schicken
             outStream.writeObject(tobj);
-            outStream.close();
+            outStream.flush();
 
             //Ergebnis vom Server holen
             result = (List<Kunde>)((TransferObject)inStream.readObject()).getObject();
@@ -163,6 +163,27 @@ public class ClientController {
         } finally {
             return result;
         }
+    }
+
+    /**
+     * Methode die verbindung zum Server herstellt, ein TransferObject an diesen schickt und ein Objekt das vom Server
+     * geschickt wurde zurück gibt.
+     *
+     * @param transferObject {@link TransferObject} für den Server.
+     * @return Unbekanntes Objekt vom Server
+     */
+    private Object sendRequest(TransferObject transferObject) {
+        Object serverObject = null;
+        try {
+            connectToServer();
+            outStream.writeObject(transferObject);
+            serverObject = inStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return serverObject;
     }
 
 
@@ -180,12 +201,10 @@ public class ClientController {
     }
 
     private void closeConnection(){
-
         try {
             if(outStream != null)outStream.close();
             if(inStream != null)inStream.close();
             if(socket != null)socket.close();
-
         } catch (IOException e) {
             System.err.println("Fehler ClientController closeConnection");
             e.printStackTrace();
