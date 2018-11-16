@@ -64,3 +64,8 @@ div.bottom {
     text-align: center;
     vertical-align: middle;
 }
+
+.btn-primary.disabled, .btn-primary:disabled {
+    background: var(--colorAccentDark);
+    border-color: var(--colorAccentDark);
+}
