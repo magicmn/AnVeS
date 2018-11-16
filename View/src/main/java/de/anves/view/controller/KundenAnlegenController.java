@@ -4,13 +4,12 @@ import de.anves.Kunde;
 import de.anves.controller.dao.KundeDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.validation.BindingResult;
 
 import javax.validation.Valid;
-import java.util.Date;
 
 
 
@@ -22,13 +21,11 @@ public class KundenAnlegenController {
     KundeDAO kundeDAO = new KundeDAO();
 
     @GetMapping("/KundeAnlegen")
-    public void kundenAnlegenForm(Model model) {
-        model.addAttribute("Kunde", new Kunde());
+    public void kundenAnlegenForm(Kunde Kunde, Model model) {
+        model.addAttribute("Kunde", Kunde);
         model.addAttribute("Kundennummer", kundeDAO.readlast().getId() + 1);
         model.addAttribute("SpeichernErfolgreich", "true");
     }
-
-
 
     @PostMapping("/KundeAnlegen")
     public void kundenAnlegenSubmit(@Valid @ModelAttribute("Kunde")Kunde kunde,
@@ -51,17 +48,8 @@ public class KundenAnlegenController {
         System.out.println(kunde.getPlz()) ;
         System.out.println(kunde.getHausnummer());
 
-
         Kunde erstellterKunde = kundeDAO.create(kunde);
         model.addAttribute("Kundennummer", kundeDAO.read(erstellterKunde.getId()).getId());
 
      }
-
-
-
-
-
-
-
-
 }

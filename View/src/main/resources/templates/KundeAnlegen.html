@@ -48,33 +48,33 @@
     <div class="form-group row">
         <label for="name" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
-            <input type="text" required="required" class="form-control" id="name" th:field="*{nachname}">
+            <input type="text"   placeholder="Mustermann/frau" required="required" class="form-control" id="name" th:field="*{nachname}">
         </div>
     </div>
     <div class="form-group row">
         <label for="vorname" class="col-sm-2 col-form-label">Vorname</label>
         <div class="col-sm-10">
-            <input type="text" required="required" class="form-control" id="vorname" th:field="*{vorname}">
+            <input type="text"   placeholder="Max/i" required="required" class="form-control" id="vorname" th:field="*{vorname}">
         </div>
     </div>
     <div class="form-group row">
         <label for="geburtsdatum" class="col-sm-2 col-form-label">Geburtsdatum</label>
         <div class="col-sm-10">
-            <input type="text"   required="required" class="form-control" id="geburtsdatum"  th:field="*{geburtsdatum}">
+            <input type="text"  placeholder="dd-mm-yyyy" required="required" class="form-control" id="geburtsdatum"  th:field="*{geburtsdatum}">
         </div>
     </div>
     <div class="form-group row">
         <label for="iban" class="col-sm-2 col-form-label">IBAN</label>
         <div class="col-sm-10">
-            <input type="text" required="required" class="form-control" id="iban" th:field="*{Bankverbindung}">
+            <input type="text"  placeholder="DE 0000 0000 000" required="required" class="form-control" id="iban" th:field="*{Bankverbindung}">
         </div>
     </div>
     <div class="form-group row">
         <label for="plz" class="col-sm-2 col-form-label">Postleitzahl/Ort</label>
         <div class="col-sm-10">
             <div class="input-group">
-                <input type="number"  required="required" class="form-control col-sm-3" id="plz" th:field="*{Plz}">
-                <input type="text" required="required" class="form-control" id="ort" th:field="*{Ort}">
+                <input type="number"   placeholder="50667" required="required" class="form-control col-sm-3" id="plz" th:field="*{Plz}">
+                <input type="text"  placeholder="Köln" required="required" class="form-control" id="ort" th:field="*{Ort}">
             </div>
         </div>
     </div>
@@ -82,8 +82,8 @@
         <label for="straße" class="col-sm-2 col-form-label">Straße/Hausnummer</label>
         <div class="col-sm-10">
             <div class="input-group">
-                <input type="text" required="required"  class="form-control" id="straße" th:field="*{Strasse}">
-                <input type="number" required="required" class="form-control col-sm-2" id="hausnummer" th:field="*{Hausnummer}">
+                <input type="text"  placeholder="Feldweg"required="required"  class="form-control" id="straße" th:field="*{Strasse}">
+                <input type="number"  placeholder="10" required="required" class="form-control col-sm-2" id="hausnummer" th:field="*{Hausnummer}">
             </div>
         </div>
     </div>

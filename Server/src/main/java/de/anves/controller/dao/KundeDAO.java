@@ -71,10 +71,14 @@ public class KundeDAO implements CRUDInterface<Kunde>{
 		db.connect();
 		try {
 			ResultSet rs = db.executeQuery(readsql);
-			
-			Kunde result = convertRsToKunde(rs).get(0);
-			
-			return result;
+
+			try{
+				Kunde result = convertRsToKunde(rs).get(0);
+				return result;
+			}catch (IndexOutOfBoundsException e){
+				return null;
+			}
+
 		} catch (SQLException e) {
 			System.err.println("KundeDao: Read: Fehler");
 			e.printStackTrace();
@@ -144,7 +148,7 @@ public class KundeDAO implements CRUDInterface<Kunde>{
 			
 			return result.get(0);
 		} catch (SQLException e) {
-			System.err.println("Kunde: upodateKunde: Fehler");
+			System.err.println("Kunde: UPDATEKunde: Fehler");
 			e.printStackTrace();
 		} finally {
 			try {
@@ -187,9 +191,21 @@ public class KundeDAO implements CRUDInterface<Kunde>{
 	 * @return		: ArrayList<Kunde> mit Ergebnissen
 	 */
 	public List<Kunde> searchNachname(Kunde value){
+
+		String pattern = "dd-MM-yyyy";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		try{
+			date = simpleDateFormat.parse(value.getGeburtsdatum());
+			System.out.println(date);
+
+		}catch(ParseException e){
+			e.printStackTrace();
+		}
+
 		//Select SQL-Statement zusammenbauen
-		String selectsql = "SELECT * FROM kunde WHERE Nachname=" + value.getNachname()
-				+ " AND WHERE Gebdat=" + value.getGeburtsdatum();
+		String selectsql = "SELECT * FROM kunde WHERE nachname='" + value.getNachname()
+				+ "' AND Gebdat=" + date.getTime();
+		System.out.printf(selectsql);
 
 		db.connect();
 		try {
@@ -201,7 +217,7 @@ public class KundeDAO implements CRUDInterface<Kunde>{
 
 			return result;	//Ergebniss zurückgeben
 		} catch (SQLException e) {
-			System.err.println("Kunde: upodateKunde: Fehler");
+			System.err.println("Kunde: searchNachname: Fehler");
 			e.printStackTrace();
 		} finally {
 			try {
@@ -220,9 +236,21 @@ public class KundeDAO implements CRUDInterface<Kunde>{
 	 * @return		: ArrayList<Kunde> mit Ergebnissen
 	 */
 	public List<Kunde> searchVorname(Kunde value){
+
+		String pattern = "dd-MM-yyyy";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		try{
+			date = simpleDateFormat.parse(value.getGeburtsdatum());
+			System.out.println(date);
+
+		}catch(ParseException e){
+			e.printStackTrace();
+		}
+
 		//Select SQL-Statement zusammenbauen
-		String selectsql = "SELECT * FROM kunde WHERE vorname=" + value.getVorname()
-				+ " AND WHERE Gebdat=" + value.getGeburtsdatum();
+		String selectsql = "SELECT * FROM kunde WHERE vorname='" + value.getVorname()
+				+ "' AND Gebdat=" + date.getTime();
+		System.out.printf(selectsql);
 
 		db.connect();
 		try {
@@ -234,7 +262,7 @@ public class KundeDAO implements CRUDInterface<Kunde>{
 
 			return result;	//Ergebniss zurückgeben
 		} catch (SQLException e) {
-			System.err.println("Kunde: upodateKunde: Fehler");
+			System.err.println("Kunde: searchVorname: Fehler");
 			e.printStackTrace();
 		} finally {
 			try {

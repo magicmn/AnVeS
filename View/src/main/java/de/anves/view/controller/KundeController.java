@@ -1,6 +1,7 @@
 package de.anves.view.controller;
 
 import de.anves.Kunde;
+import de.anves.controller.dao.KundeDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,8 @@ import java.util.List;
  *  anschließend wird ein Kunde ausgewählt
  */
 public class KundeController {
+
+    KundeDAO dao = new KundeDAO();
 
     /**
      * Get Mapping für KundeSuchen
@@ -40,24 +43,25 @@ public class KundeController {
 
         //Unterscheidung, welche Suchkriterien angegeben wurden
         if(kunde.getId() != 0){ //Suche nach ID
-            //Ergebnissliste aus der Datenbank holen
-            Kunde ergebniss = new ClientController().kundenSuchenID(kunde.getId());
-
-            //Wenn ein Kunde gefundenwurde hinzufügen
-            if(kunde != null) {
-                dbergebniss.add(new ClientController().kundenSuchenID(kunde.getId()));
+            Kunde ergebnis = dao.read(kunde.getId());
+            if(ergebnis == null){
+                return "redirect:/KundeAnlegen";
+            }else{
+                dbergebniss.add(ergebnis);
             }
+
         } else if(kunde.getNachname() != null){ //Suche nach Nachnamen und Geburtsdatum
             //Ergebnissliste aus der Datenbank hinzufügen
-            dbergebniss = new ClientController().kundenSuchenNachname(kunde.getNachname(),kunde.getGeburtsdatum());
+            dbergebniss = dao.searchNachname(kunde);
+
         } else if(kunde.getVorname() != null){  //Suche nach Vornamen und Geburtsdatum
             //Ergebnissliste aus der Datenbank hinzufügen
-            dbergebniss = new ClientController().kundenSuchenVorname(kunde.getVorname(),kunde.getGeburtsdatum());
+            dbergebniss = dao.searchVorname(kunde);
         }
 
         //Wenn Kein Kunde gefunden wurde als nächstes KundeAnlegen aufrufen
-        if(dbergebniss.size() == 0){
-            return "KundeAnlegen";
+        if(dbergebniss == null || dbergebniss.size() == 0){
+            return "redirect:/KundeAnlegen";
         }else{  //Wenn Kunden gefunden wurden dem model als attribute hinzufügen um mit themleaf zu verarbeiten
             model.addAttribute("kunden", dbergebniss);
         }
