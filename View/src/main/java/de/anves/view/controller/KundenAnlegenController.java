@@ -12,6 +12,9 @@ import org.springframework.validation.BindingResult;
 import javax.validation.Valid;
 import java.util.Date;
 
+
+
+
 @Controller
 public class KundenAnlegenController {
 
@@ -38,7 +41,7 @@ public class KundenAnlegenController {
         }else{
             model.addAttribute("SpeichernErfolgreich", "false");
         }
-        //model.addAttribute("geburtsdatum", "testDatumVonJAvaAUS");
+
         System.out.println(kunde.getId()) ;
         System.out.println(kunde.getVorname());
         System.out.println(kunde.getNachname()) ;
