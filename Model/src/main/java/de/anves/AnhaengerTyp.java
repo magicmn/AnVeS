@@ -1,7 +1,7 @@
 package de.anves;
 
 public enum AnhaengerTyp {
-    EINACHSER(1), TANDEMACHSER(2), KOFFERANHAENGER(3), MOTORRADANHAENGER(4);
+    EINACHSER(0), TANDEMACHSER(1), KOFFERANHAENGER(2), MOTORRADANHAENGER(3);
 
     public final long id;
 
