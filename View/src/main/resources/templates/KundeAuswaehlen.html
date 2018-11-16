@@ -45,14 +45,14 @@
                     <tr th:each="k : ${kunden}">
                         <th scope="row">
                             <label class="form-check noplaceholder">
-                                <input class="form-check-input position-static" type="radio" th:field="*{kunde}" th:id="'kunde' + ${i.id}"
-                                       th:value="${i}">
+                                <input class="form-check-input position-static" type="radio" th:field="*{kunde}" th:id="'kunde' + ${k.id}"
+                                       th:value="${k}">
                             </label>
                         </th>
-                        <td><label class="noplaceholder fillSpace" th:for="${i.id}" th:text="${i.id}"></label></td>
-                        <td><label class="noplaceholder fillSpace" th:for="${i.id}" th:text="${i.nachname}"></label></td>
-                        <td><label class="noplaceholder fillSpace" th:for="${i.id}" th:text="${i.vorname}"></label></td>
-                        <td><label class="noplaceholder fillSpace" th:for="${i.id}" th:text="${i.geburtsdatum}"></label></td>
+                        <td><label class="noplaceholder fillSpace" th:for="${k.id}" th:text="${k.id}"></label></td>
+                        <td><label class="noplaceholder fillSpace" th:for="${k.id}" th:text="${k.nachname}"></label></td>
+                        <td><label class="noplaceholder fillSpace" th:for="${k.id}" th:text="${k.vorname}"></label></td>
+                        <td><label class="noplaceholder fillSpace" th:for="${k.id}" th:text="${k.geburtsdatum}"></label></td>
                     </tr>
                 </tbody>
             </table>
