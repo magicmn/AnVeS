@@ -62,15 +62,6 @@ public class AnhaengerController {
         public void setZeitraumBis(Date zeitraumBis) {
             this.zeitraumBis = zeitraumBis;
         }
-
-        @Override
-        public String toString() {
-            return "AnhaengerSuchenForm{" +
-                    "anhaengerTyp=" + anhaengerTyp +
-                    ", zeitraumVon=" + zeitraumVon +
-                    ", zeitraumBis=" + zeitraumBis +
-                    '}';
-        }
     }
 
     public class VerfuegbareAnhaengerForm {

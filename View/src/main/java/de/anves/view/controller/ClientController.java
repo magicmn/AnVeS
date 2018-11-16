@@ -165,6 +165,27 @@ public class ClientController {
         }
     }
 
+    /**
+     * Methode die verbindung zum Server herstellt, ein TransferObject an diesen schickt und ein Objekt das vom Server
+     * geschickt wurde zurück gibt.
+     *
+     * @param transferObject {@link TransferObject} für den Server.
+     * @return Unbekanntes Objekt vom Server
+     */
+    private Object sendRequest(TransferObject transferObject) {
+        Object serverObject = null;
+        try {
+            connectToServer();
+            outStream.writeObject(transferObject);
+            serverObject = inStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return serverObject;
+    }
+
 
     /**
      * stellt die Verbindung zum Server her und baut die Streams auf
@@ -180,12 +201,10 @@ public class ClientController {
     }
 
     private void closeConnection(){
-
         try {
             if(outStream != null)outStream.close();
             if(inStream != null)inStream.close();
             if(socket != null)socket.close();
-
         } catch (IOException e) {
             System.err.println("Fehler ClientController closeConnection");
             e.printStackTrace();
