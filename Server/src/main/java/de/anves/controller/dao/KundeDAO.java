@@ -19,10 +19,6 @@ public class KundeDAO implements CRUDInterface<Kunde>{
 	@Override
 	public Kunde create(Kunde value) {
 		List<Kunde> result;
-
-
-
-
 		String pattern = "dd-MM-yyyy";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		try{
@@ -91,7 +87,11 @@ public class KundeDAO implements CRUDInterface<Kunde>{
 		}
 		return null;
 	}
-
+	/**
+	 * Selektiert den letzten Kunden aus der Datenbank
+	 * @param
+	 * @return		: Kunde-Objekt mit maximaler id
+	 */
 
 	public Kunde readlast() {
 		String selectsql = "SELECT * FROM kunde WHERE kundeid =( SELECT max(kundeid) FROM kunde)";
