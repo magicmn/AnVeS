@@ -12,8 +12,13 @@ header {
 }
 
 nav {
-    width: 1300px;
     margin: 0 auto 50 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.innerNav {
+    display: inline-block;
 }
 
 .dark-bg {

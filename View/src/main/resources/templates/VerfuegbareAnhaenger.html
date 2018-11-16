@@ -17,17 +17,16 @@
     </div>
 </header>
 <nav>
-    <ol class="breadcrumb dark-bg">
-        <li class="breadcrumb-item">Anhänger suchen</li>
-        <li class="breadcrumb-item active">Verfügbare Anhänger</li>
-        <li class="breadcrumb-item">Tarif wählen</li>
-        <li class="breadcrumb-item">Kunde suchen</li>
-        <li class="breadcrumb-item">Kunde auswählen</li>
-        <li class="breadcrumb-item">Kunde anlegen</li>
-        <li class="breadcrumb-item">Vertrag suchen</li>
-        <li class="breadcrumb-item">Vertrag auswählen</li>
-        <li class="breadcrumb-item">Status ändern</li>
-    </ol>
+    <div class="innerNav">
+        <ol class="breadcrumb dark-bg">
+            <li class="breadcrumb-item">Anhänger suchen</li>
+            <li class="breadcrumb-item active">Verfügbare Anhänger</li>
+            <li class="breadcrumb-item">Tarif wählen</li>
+            <li class="breadcrumb-item">Kunden suchen</li>
+            <li class="breadcrumb-item">Kunde auswählen</li>
+            <li class="breadcrumb-item">Kunde anlegen</li>
+        </ol>
+    </div>
 </nav>
 
 <section class="container-fluid col-sm-9">
@@ -73,7 +72,7 @@
                                 <div class="card-header" th:text="${j.Datum}"></div>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item" th:text="${j.Beschreibung}"></li>
-                                    <li class="list-group-item" th:text="${j.AnmerkungKunde}"></li>
+                                    <li class="list-group-item"><i th:text="${j.AnmerkungKunde}"></i></li>
                                 </ul>
                             </div>
                         </div>
@@ -86,7 +85,7 @@
                 <button type="submit" class="btn btn-primary btn-block">Anhänger wählen</button>
             </div>
             <div class="col-sm-6">
-                <button type="reset" class="btn btn-danger btn-block">Abbrechen</button>
+                <a href="/" class="btn btn-danger btn-block">Abrrechen</a>
             </div>
         </div>
     </form>
